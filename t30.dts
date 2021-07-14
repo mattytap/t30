@@ -47,7 +47,7 @@
 		#size-cells = <0x01>;
 		compatible = "fsl,p1020-elbc\0fsl,elbc\0simple-bus";
 		interrupts = <0x13 0x02 0x00 0x00 0x10 0x02 0x00 0x00>;
-		ranges = <0x00 0x00 0x00 0xefc00000 0x100000>;
+		ranges = <0x00 0x00 0x00 0xefc00000 0x1000000>;
 		reg = <0x00 0xffe05000 0x00 0x1000>;
 
 		L2switch@2,0 {
@@ -326,9 +326,9 @@
 			interrupts = <0x2b 0x02 0x00 0x00>;
 			reg = <0x3000 0x100>;
 
-			rtc@68 {
-				compatible = "dallas,ds1339";
-				reg = <0x68>;
+			rtc@30 {
+				compatible = "seiko,s35390a";
+				reg = <0x30>;
 			};
 		};
 
@@ -430,7 +430,7 @@
 			single-cpu-affinity;
 		};
 
-		sdhc@2e000 {
+		sdhci@2e000 {
 			clock-frequency = <0x00>;
 			compatible = "fsl,p1020-esdhc\0fsl,esdhc";
 			interrupts = <0x48 0x02 0x00 0x00>;
@@ -464,7 +464,7 @@
 			interrupts = <0x3b 0x02 0x00 0x00>;
 			reg = <0x7000 0x1000>;
 
-			flash@0 {
+			fsl_m25p80@0 {
 				#address-cells = <0x01>;
 				#size-cells = <0x01>;
 				compatible = "fsl,mx25l25635f","spansion,s25sl12801\0jedec,spi-nor";
