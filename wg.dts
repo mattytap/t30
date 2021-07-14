@@ -8,7 +8,7 @@
 	model = "fsl,P1011BOREN";
 
 	aliases {
-		ethernet0 = "/soc@ffe00000/ethernet@B0000";
+		ethernet0 = "/soc@ffe00000/ethernet@b0000";
 		pci0 = "/pcie@ffe09000";
 		pci1 = "/pcie@ffe0a000";
 		serial0 = "/soc@ffe00000/serial@4500";
@@ -224,7 +224,7 @@
 			reg = <0x1000 0x1000>;
 		};
 
-		ethernet@B0000 {
+		ethernet@b0000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			cell-index = <0x00>;
@@ -257,17 +257,17 @@
 		};
 
 		global-utilities@e0000 {
-			compatible = "fsl,p2020-guts";
+			compatible = "fsl,p1020-guts";
 			fsl,has-rstcr;
 			reg = <0xe0000 0x1000>;
 		};
 
-		gpio-controller@f000 {
+		gpio-controller@fc00 {
 			#gpio-cells = <0x02>;
-			compatible = "fsl,mpc8572-gpio";
+			compatible = "fsl,pq3-gpio";
 			gpio-controller;
 			interrupts = <0x2f 0x02>;
-			reg = <0xf000 0x100>;
+			reg = <0xfc00 0x100>;
 		};
 
 		i2c@3000 {
@@ -339,6 +339,13 @@
 			};
 		};
 
+		mdio@26000 {
+			#address-cells = <0x01>;
+			#size-cells = <0x00>;
+			compatible = "fsl,etsec2-tbi";
+			reg = <0x26000 0x1000 0xb1030 0x04>;
+		};
+
 		memory-controller@2000 {
 			compatible = "fsl,p1020-memory-controller";
 			interrupts = <0x10 0x02>;
@@ -367,12 +374,15 @@
 		pic@40000 {
 			#address-cells = <0x00>;
 			#interrupt-cells = <0x02>;
+			big-endian;
 			compatible = "chrp,open-pic";
 			device_type = "open-pic";
 			interrupt-controller;
+			last-interrupt-source = <0xff>;
 			linux,phandle = <0x01>;
 			phandle = <0x01>;
 			reg = <0x40000 0x40000>;
+			single-cpu-affinity;
 		};
 
 		sdhci@2e000 {
@@ -445,6 +455,7 @@
 			#address-cells = <0x01>;
 			#size-cells = <0x00>;
 			compatible = "fsl-usb2-dr";
+			dr_mode = "host";
 			interrupts = <0x1c 0x02>;
 			phy_type = "ulpi";
 			reg = <0x22000 0x1000>;
