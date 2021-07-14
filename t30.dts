@@ -35,7 +35,7 @@
 		power-isa-sp.fv;
 		power-isa-version = "2.03";
 
-		PowerPC,P1011@0 {
+		PowerPC,P1020@0 {
 			device_type = "cpu";
 			next-level-cache = <0x02>;
 			reg = <0x00>;
@@ -47,7 +47,7 @@
 		#size-cells = <0x01>;
 		compatible = "fsl,p1020-elbc\0fsl,elbc\0simple-bus";
 		interrupts = <0x13 0x02 0x00 0x00 0x10 0x02 0x00 0x00>;
-		ranges = <0x00 0x00 0x00 0xef000000 0x1000000 0x01 0x00 0x00 0xffa00000 0x40000 0x02 0x00 0x00 0xffb00000 0x20000>;
+		ranges = <0x00 0x00 0x00 0xefc00000 0x100000>;
 		reg = <0x00 0xffe05000 0x00 0x1000>;
 
 		L2switch@2,0 {
@@ -57,13 +57,13 @@
 			reg = <0x02 0x00 0x20000>;
 		};
 
-		nor@0 {
+		nor@0,0 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			bank-width = <0x02>;
 			compatible = "cfi-flash";
 			device-width = <0x01>;
-			reg = <0x00 0x00 0x1000000>;
+			reg = <0x00 0x00 0x400000>;
 
 			partition@0 {
 				label = "NOR (RO) Vitesse-7385 Firmware";
@@ -326,11 +326,6 @@
 			interrupts = <0x2b 0x02 0x00 0x00>;
 			reg = <0x3000 0x100>;
 
-			rtc@30 {
-				compatible = "seiko,s35390a";
-				reg = <0x30>;
-			};
-
 			rtc@68 {
 				compatible = "dallas,ds1339";
 				reg = <0x68>;
@@ -345,11 +340,6 @@
 			dfsrr;
 			interrupts = <0x2b 0x02 0x00 0x00>;
 			reg = <0x3100 0x100>;
-
-			tpm@29 {
-				compatible = "tpm,tpm_i2c_atmel";
-				reg = <0x29>;
-			};
 		};
 
 		l2-cache-controller@20000 {
@@ -357,6 +347,7 @@
 			cache-size = <0x40000>;
 			compatible = "fsl,p1020-l2-cache-controller";
 			interrupts = <0x10 0x02 0x00 0x00>;
+			linux,phandle = <0x02>;
 			phandle = <0x02>;
 			reg = <0x20000 0x1000>;
 		};
@@ -419,12 +410,6 @@
 			reg = <0x41400 0x200>;
 		};
 
-		message@42400 {
-			compatible = "fsl,p1020-msg\0fsl,mpic-msg";
-			interrupts = <0xb4 0x02 0xb5 0x02 0xb6 0x02 0xb7 0x02>;
-			reg = <0x42400 0x200>;
-		};
-
 		msi@41600 {
 			compatible = "fsl,mpic-msi";
 			interrupts = <0xe0 0x00 0x00 0x00 0xe1 0x00 0x00 0x00 0xe2 0x00 0x00 0x00 0xe3 0x00 0x00 0x00 0xe4 0x00 0x00 0x00 0xe5 0x00 0x00 0x00 0xe6 0x00 0x00 0x00 0xe7 0x00 0x00 0x00>;
@@ -445,7 +430,7 @@
 			single-cpu-affinity;
 		};
 
-		sdhci@2e000 {
+		sdhc@2e000 {
 			clock-frequency = <0x00>;
 			compatible = "fsl,p1020-esdhc\0fsl,esdhc";
 			interrupts = <0x48 0x02 0x00 0x00>;
@@ -479,12 +464,29 @@
 			interrupts = <0x3b 0x02 0x00 0x00>;
 			reg = <0x7000 0x1000>;
 
-			fsl_m25p80@0 {
+			flash@0 {
 				#address-cells = <0x01>;
 				#size-cells = <0x01>;
-				compatible = "spansion,s25sl12801\0jedec,spi-nor";
+				compatible = "fsl,mx25l25635f","spansion,s25sl12801\0jedec,spi-nor";
 				reg = <0x00>;
-				spi-max-frequency = <0x2faf080>;
+				spi-max-frequency = <0x2625a00>;
+
+				partition@dtb {
+					label = "dtb";
+					read-only;
+					reg = <0x80000 0x80000>;
+				};
+
+				partition@fs {
+					label = "file system";
+					read-only;
+					reg = <0x500000 0x400000>;
+				};
+
+				partition@jffs-fs {
+					label = "file system jffs2";
+					reg = <0x900000 0x700000>;
+				};
 
 				partition@kernel {
 					label = "kernel";
@@ -497,13 +499,6 @@
 					read-only;
 					reg = <0x00 0x80000>;
 				};
-			};
-
-			legerity@0 {
-				compatible = "zarlink,le88266";
-				mode = <0x01>;
-				reg = <0x01>;
-				spi-max-frequency = <0x7a120>;
 			};
 		};
 

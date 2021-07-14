@@ -228,6 +228,13 @@
 				reg = <0x00 0x80>;
 			};
 
+			dma-channel@80 {
+				cell-index = <0x01>;
+				compatible = "fsl,eloplus-dma-channel";
+				interrupts = <0x15 0x02 0x00 0x00>;
+				reg = <0x80 0x80>;
+			};
+
 			dma-channel@100 {
 				cell-index = <0x02>;
 				compatible = "fsl,eloplus-dma-channel";
@@ -240,13 +247,6 @@
 				compatible = "fsl,eloplus-dma-channel";
 				interrupts = <0x17 0x02 0x00 0x00>;
 				reg = <0x180 0x80>;
-			};
-
-			dma-channel@80 {
-				cell-index = <0x01>;
-				compatible = "fsl,eloplus-dma-channel";
-				interrupts = <0x15 0x02 0x00 0x00>;
-				reg = <0x80 0x80>;
 			};
 		};
 
