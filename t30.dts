@@ -364,13 +364,13 @@
 			reg = <0x24000 0x1000 0xb0030 0x04>;
 
 			ethernet-phy@0 {
-				interrupts = <0x03 0x01>;
+				interrupts = <0x02 0x01>;
 				phandle = <0x03>;
 				reg = <0x00>;
 			};
 
 			ethernet-phy@1 {
-				interrupts = <0x02 0x01>;
+				interrupts = <0x03 0x01>;
 				phandle = <0x05>;
 				reg = <0x01>;
 			};

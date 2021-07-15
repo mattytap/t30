@@ -398,6 +398,7 @@
 
 			tbi-phy@0 {
 				device_type = "tbi-phy";
+				phandle = <0x04>;
 				reg = <0x10>;
 			};
 		};
