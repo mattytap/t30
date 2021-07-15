@@ -5,7 +5,7 @@
 	#size-cells = <0x02>;
 	compatible = "fsl,P1020RDB";
 	interrupt-parent = <0x01>;
-	model = "WatchGuard T30";
+	model = "fsl,P1011BOREN";
 
 	aliases {
 		ethernet0 = "/soc@ffe00000/ethernet@b0000";
@@ -35,16 +35,10 @@
 		power-isa-sp.fv;
 		power-isa-version = "2.03";
 
-		PowerPC,P1020@0 {
+		PowerPC,P1011@0 {
 			device_type = "cpu";
 			next-level-cache = <0x02>;
 			reg = <0x00>;
-		};
-
-		PowerPC,P1020@1 {
-			device_type = "cpu";
-			next-level-cache = <0x02>;
-			reg = <0x01>;
 		};
 	};
 
@@ -426,7 +420,7 @@
 		};
 
 		msi@41600 {
-			compatible = "fsl,mpic-msi";
+			compatible = "fsl,p1020-msi" , "fsl,mpic-msi";
 			interrupts = <0xe0 0x00 0x00 0x00 0xe1 0x00 0x00 0x00 0xe2 0x00 0x00 0x00 0xe3 0x00 0x00 0x00 0xe4 0x00 0x00 0x00 0xe5 0x00 0x00 0x00 0xe6 0x00 0x00 0x00 0xe7 0x00 0x00 0x00>;
 			msi-available-ranges = <0x00 0x100>;
 			reg = <0x41600 0x80>;
