@@ -499,12 +499,7 @@
 
 				partition@spi_mtd_0 {
 					label = "spi_mtd_0";
-					reg = <0x00 0x800000>;
-				};
-
-				partition@spi_mtd_1 {
-					label = "spi_mtd_1";
-					reg = <0x800000 0x1800000>;
+					reg = <0x00 0x8000>;
 				};
 			};
 

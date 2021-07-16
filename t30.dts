@@ -68,30 +68,30 @@
 			partition@0 {
 				label = "NOR (RO) Vitesse-7385 Firmware";
 				read-only;
-				reg = <0x00 0x40000>;
+				reg = <0x00 0x30000>;
 			};
 
-			partition@40000 {
+			partition@30000 {
 				label = "NOR (RO) DTB Image";
 				read-only;
-				reg = <0x40000 0x40000>;
+				reg = <0x30000 0x20000>;
 			};
 
-			partition@400000 {
-				label = "NOR (RW) JFFS2 Root File System";
-				reg = <0x400000 0xb00000>;
-			};
-
-			partition@80000 {
+			partition@50000 {
 				label = "NOR (RO) Linux Kernel Image";
 				read-only;
-				reg = <0x80000 0x380000>;
+				reg = <0x50000 0x240000>;
 			};
 
-			partition@f00000 {
+			partition@290000 {
+				label = "NOR (RW) JFFS2 Root File System";
+				reg = <0x290000 0xf0000>;
+			};
+
+			partition@380000 {
 				label = "NOR (RO) U-Boot Image";
 				read-only;
-				reg = <0xf00000 0x100000>;
+				reg = <0x380000 0x80000>;
 			};
 		};
 	};
@@ -309,12 +309,12 @@
 			reg = <0xe0000 0x1000>;
 		};
 
-		gpio-controller@fc00 {
+		gpio-controller@f000 {
 			#gpio-cells = <0x02>;
-			compatible = "fsl,pq3-gpio";
+			compatible = "fsl,mpc8572-gpio";
 			gpio-controller;
 			interrupts = <0x2f 0x02 0x00 0x00>;
-			reg = <0xfc00 0x100>;
+			reg = <0xf000 0x100>;
 		};
 
 		i2c@3000 {
@@ -387,10 +387,10 @@
 			compatible = "fsl,etsec2-tbi";
 			reg = <0x25000 0x1000 0xb1030 0x04>;
 
-			tbi-phy@10 {
+			tbi-phy@11 {
 				device_type = "tbi-phy";
 				phandle = <0x04>;
-				reg = <0x10>;
+				reg = <0x11>;
 			};
 		};
 
@@ -481,34 +481,18 @@
 				reg = <0x00>;
 				spi-max-frequency = <0x2625a00>;
 
-				partition@dtb {
-					label = "dtb";
-					read-only;
-					reg = <0x80000 0x80000>;
-				};
-
-				partition@fs {
-					label = "file system";
-					read-only;
-					reg = <0x500000 0x400000>;
-				};
-
-				partition@jffs-fs {
-					label = "file system jffs2";
-					reg = <0x900000 0x700000>;
-				};
-
-				partition@kernel {
-					label = "kernel";
-					read-only;
-					reg = <0x100000 0x400000>;
-				};
-
 				partition@u-boot {
 					label = "u-boot";
 					read-only;
-					reg = <0x00 0x80000>;
+					reg = <0x00 0x8000>;
 				};
+			};
+
+			legerity@0 {
+				compatible = "zarlink,le88266";
+				mode = <0x01>;
+				reg = <0x01>;
+				spi-max-frequency = <0x7a120>;
 			};
 		};
 
