@@ -490,7 +490,7 @@
 				#address-cells = <0x01>;
 				#compatible = "fsl,espi-flash";
 				#size-cells = <0x01>;
-				compatible = "fsl,mx25l25635f";
+				compatible = "spansion,mr25h256" , "jedec,spi-nor";
 				linux,modalias = "fsl_m25p80";
 				modal = "mx25l25635f";
 				mode = <0x00>;
@@ -503,7 +503,7 @@
 				};
 			};
 
-			legerity@0 {
+			legerity@1 {
 				compatible = "zarlink,le88266";
 				mode = <0x01>;
 				reg = <0x01>;
