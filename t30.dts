@@ -59,7 +59,7 @@
 			reg = <0x00 0x00 0x400000>;
 
 			partition@0 {
-				label = "NOR (RW) SquashFS Root File System";
+				label = "firmware";
 				reg = <0x00 0x370000>;
 			};
 
