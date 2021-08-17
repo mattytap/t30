@@ -59,17 +59,17 @@
 			reg = <0x00 0x00 0x400000>;
 
 			partition@0 {
-				label = "firmware";
+				label = "rootfs";
 				reg = <0x00 0x370000>;
 			};
 
 			partition@370000 {
-				label = "NOR (RW) WG U-Boot ENV";
+				label = "env";
 				reg = <0x370000 0x10000>;
 			};
 
 			partition@380000 {
-				label = "NOR (RW) WG U-Boot Image";
+				label = "uboot";
 				reg = <0x380000 0x80000>;
 			};
 		};
