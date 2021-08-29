@@ -9,6 +9,8 @@
 
 	aliases {
 		ethernet0 = "/soc@ffe00000/ethernet@b0000";
+		ethernet1 = "/soc@ffe00000/ethernet@b1000";
+		ethernet2 = "/soc@ffe00000/ethernet@b2000";
 		pci0 = "/pcie@ffe09000";
 		pci1 = "/pcie@ffe0a000";
 		serial0 = "/soc@ffe00000/serial@4500";
@@ -47,13 +49,6 @@
 		interrupts = <0x13 0x02 0x00 0x00 0x10 0x02 0x00 0x00>;
 		ranges = <0x00 0x00 0x00 0xefc00000 0x100000>;
 		reg = <0x00 0xffe05000 0x00 0x1000>;
-
-		L2switch@200000000 {
-			#address-cells = <0x01>;
-			#size-cells = <0x01>;
-			compatible = "marvell,mv88e6085";
-			reg = <0x02 0x00 0x20000>;
-		};
 
 		nor@0 {
 			#address-cells = <0x01>;
@@ -225,6 +220,65 @@
 				#size-cells = <0x01>;
 				interrupts = <0x11 0x02 0x00 0x00 0x12 0x02 0x00 0x00 0x18 0x02 0x00 0x00>;
 				reg = <0xb4000 0x1000>;
+			};
+		};
+
+		ethernet@b1000 {
+			#address-cells = <0x01>;
+			#size-cells = <0x01>;
+			compatible = "fsl,etsec2";
+			device_type = "network";
+			fsl,magic-packet;
+			fsl,num_rx_queues = <0x08>;
+			fsl,num_tx_queues = <0x08>;
+			local-mac-address = [00 00 00 00 00 00];
+			model = "eTSEC";
+			phy-connection-type = "sgmii";
+			phy-handle = <0x03>;
+			ranges;
+			tbi-handle = <0x04>;
+
+			queue-group@b1000 {
+				#address-cells = <0x01>;
+				#size-cells = <0x01>;
+				interrupts = <0x23 0x02 0x00 0x00 0x24 0x02 0x00 0x00 0x28 0x02 0x00 0x00>;
+				reg = <0xb1000 0x1000>;
+			};
+
+			queue-group@b5000 {
+				#address-cells = <0x01>;
+				#size-cells = <0x01>;
+				interrupts = <0x33 0x02 0x00 0x00 0x34 0x02 0x00 0x00 0x43 0x02 0x00 0x00>;
+				reg = <0xb5000 0x1000>;
+			};
+		};
+
+		ethernet@b2000 {
+			#address-cells = <0x01>;
+			#size-cells = <0x01>;
+			compatible = "fsl,etsec2";
+			device_type = "network";
+			fsl,magic-packet;
+			fsl,num_rx_queues = <0x08>;
+			fsl,num_tx_queues = <0x08>;
+			local-mac-address = [00 00 00 00 00 00];
+			model = "eTSEC";
+			phy-connection-type = "rgmii-id";
+			phy-handle = <0x05>;
+			ranges;
+
+			queue-group@b2000 {
+				#address-cells = <0x01>;
+				#size-cells = <0x01>;
+				interrupts = <0x1f 0x02 0x00 0x00 0x20 0x02 0x00 0x00 0x21 0x02 0x00 0x00>;
+				reg = <0xb2000 0x1000>;
+			};
+
+			queue-group@b6000 {
+				#address-cells = <0x01>;
+				#size-cells = <0x01>;
+				interrupts = <0x19 0x02 0x00 0x00 0x1a 0x02 0x00 0x00 0x1b 0x02 0x00 0x00>;
+				reg = <0xb6000 0x1000>;
 			};
 		};
 
