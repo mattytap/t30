@@ -28,7 +28,7 @@
 	localbus@ffe05000 {
 		#address-cells = <0x02>;
 		#size-cells = <0x01>;
-		compatible = "fsl,p1020-elbc", "fsl,elbc", "simple-bus";
+		compatible = "fsl,p1020-elbc\0fsl,elbc\0simple-bus";
 		interrupt-parent = <0x02>;
 		interrupts = <0x13 0x02>;
 		ranges = <0x00 0x00 0x00 0xefc00000 0x100000>;
@@ -42,18 +42,48 @@
 			device-width = <0x01>;
 			reg = <0x00 0x00 0x400000>;
 
-			partition@0 {
-				label = "rootfs";
-				reg = <0x00 0x370000>;
+			partition@00000000 {
+				label = "NOR (RW) WG CFG0";
+				reg = <0x00 0x20000>;
 			};
 
-			partition@370000 {
-				label = "env";
+			partition@00020000 {
+				label = "NOR (RW) WG CFG1";
+				reg = <0x20000 0x10000>;
+			};
+
+			partition@00030000 {
+				label = "NOR (RW) WG MFG";
+				reg = <0x30000 0x20000>;
+			};
+
+			partition@00050000 {
+				label = "NOR (RW) WG bootOpt Data & reserved";
+				reg = <0x50000 0xc0000>;
+			};
+
+			partition@00110000 {
+				label = "NOR (RW) WG extra reserved 1";
+				reg = <0x110000 0xc0000>;
+			};
+
+			partition@001D0000 {
+				label = "NOR (RW) WG extra reserved 2";
+				reg = <0x1d0000 0xc0000>;
+			};
+
+			partition@00290000 {
+				label = "NOR (RW) Backup";
+				reg = <0x290000 0xe0000>;
+			};
+
+			partition@00370000 {
+				label = "NOR (RW) WG U-Boot ENV";
 				reg = <0x370000 0x10000>;
 			};
 
-			partition@380000 {
-				label = "uboot";
+			partition@00380000 {
+				label = "NOR (RW) WG U-Boot Image";
 				reg = <0x380000 0x80000>;
 			};
 		};
@@ -117,12 +147,12 @@
 		#address-cells = <0x01>;
 		#size-cells = <0x01>;
 		bus-frequency = <0x00>;
-		compatible = "fsl,p1020-immr", "simple-bus";
+		compatible = "fsl,p1020-immr\0simple-bus";
 		device_type = "soc";
 		ranges = <0x00 0x00 0xffe00000 0x100000>;
 
 		crypto@30000 {
-			compatible = "fsl,sec3.3", "fsl,sec3.1", "fsl,sec3.0", "fsl,sec2.4", "fsl,sec2.2", "fsl,sec2.1", "fsl,sec2.0";
+			compatible = "fsl,sec3.3\0fsl,sec3.1\0fsl,sec3.0\0fsl,sec2.4\0fsl,sec2.2\0fsl,sec2.1\0fsl,sec2.0";
 			fsl,channel-fifo-len = <0x18>;
 			fsl,channel-remap = <0x03>;
 			fsl,descriptor-types-mask = <0x3a30abf>;
@@ -150,14 +180,6 @@
 				reg = <0x00 0x80>;
 			};
 
-			dma-channel@80 {
-				cell-index = <0x01>;
-				compatible = "fsl,eloplus-dma-channel";
-				interrupt-parent = <0x02>;
-				interrupts = <0x15 0x02>;
-				reg = <0x80 0x80>;
-			};
-
 			dma-channel@100 {
 				cell-index = <0x02>;
 				compatible = "fsl,eloplus-dma-channel";
@@ -173,6 +195,14 @@
 				interrupts = <0x17 0x02>;
 				reg = <0x180 0x80>;
 			};
+
+			dma-channel@80 {
+				cell-index = <0x01>;
+				compatible = "fsl,eloplus-dma-channel";
+				interrupt-parent = <0x02>;
+				interrupts = <0x15 0x02>;
+				reg = <0x80 0x80>;
+			};
 		};
 
 		ecm-law@0 {
@@ -182,7 +212,7 @@
 		};
 
 		ecm@1000 {
-			compatible = "fsl,p1020-ecm", "fsl,ecm";
+			compatible = "fsl,p1020-ecm\0fsl,ecm";
 			interrupt-parent = <0x02>;
 			interrupts = <0x10 0x02>;
 			reg = <0x1000 0x1000>;
@@ -318,21 +348,21 @@
 		};
 
 		message@41400 {
-			compatible = "fsl,p1020-msg", "fsl,mpic-msg";
+			compatible = "fsl,p1020-msg\0fsl,mpic-msg";
 			interrupt-parent = <0x02>;
 			interrupts = <0xb0 0x02 0xb1 0x02 0xb2 0x02 0xb3 0x02>;
 			reg = <0x41400 0x200>;
 		};
 
 		message@42400 {
-			compatible = "fsl,p1020-msg", "fsl,mpic-msg";
+			compatible = "fsl,p1020-msg\0fsl,mpic-msg";
 			interrupt-parent = <0x02>;
 			interrupts = <0xb4 0x02 0xb5 0x02 0xb6 0x02 0xb7 0x02>;
 			reg = <0x42400 0x200>;
 		};
 
 		msi@41600 {
-			compatible = "fsl,p1020-msi", "fsl,mpic-msi";
+			compatible = "fsl,p1020-msi\0fsl,mpic-msi";
 			interrupt-parent = <0x02>;
 			interrupts = <0xe0 0x00 0xe1 0x00 0xe2 0x00 0xe3 0x00 0xe4 0x00 0xe5 0x00 0xe6 0x00 0xe7 0x00>;
 			msi-available-ranges = <0x00 0x100>;
@@ -352,7 +382,7 @@
 
 		sdhci@2e000 {
 			clock-frequency = <0x00>;
-			compatible = "fsl,p1020-esdhc", "fsl,esdhc";
+			compatible = "fsl,p1020-esdhc\0fsl,esdhc";
 			interrupt-parent = <0x02>;
 			interrupts = <0x48 0x02>;
 			reg = <0x2e000 0x1000>;
