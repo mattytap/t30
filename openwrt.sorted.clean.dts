@@ -5,7 +5,7 @@
 	#size-cells = <0x02>;
 	compatible = "fsl,P1020RDB";
 	interrupt-parent = <0x01>;
-	model = "fsl,P1011BOREN";
+	model = "WatchGuard T30";
 
 	aliases {
 		ethernet0 = "/soc@ffe00000/ethernet@b0000";
@@ -35,42 +35,110 @@
 		power-isa-sp.fv;
 		power-isa-version = "2.03";
 
-		PowerPC,P1011@0 {
+		PowerPC,P1020@0 {
 			device_type = "cpu";
 			next-level-cache = <0x02>;
 			reg = <0x00>;
+		};
+
+		PowerPC,P1020@1 {
+			device_type = "cpu";
+			next-level-cache = <0x02>;
+			reg = <0x01>;
 		};
 	};
 
 	localbus@ffe05000 {
 		#address-cells = <0x02>;
 		#size-cells = <0x01>;
-		compatible = "fsl,p1020-elbc" , "fsl,elbc" , "simple-bus";
+		compatible = "fsl,p1020-elbc", "fsl,elbc", "simple-bus";
 		interrupts = <0x13 0x02 0x00 0x00 0x10 0x02 0x00 0x00>;
-		ranges = <0x00 0x00 0x00 0xefc00000 0x100000>;
+		ranges = <0x00 0x00 0x00 0xef000000 0x1000000 0x01 0x00 0x00 0xffa00000 0x40000 0x02 0x00 0x00 0xffb00000 0x20000>;
 		reg = <0x00 0xffe05000 0x00 0x1000>;
 
-		nor@0 {
+		L2switch@2,0 {
+			#address-cells = <0x01>;
+			#size-cells = <0x01>;
+			compatible = "vitesse-7385";
+			reg = <0x02 0x00 0x20000>;
+		};
+
+		nand@1,0 {
+			#address-cells = <0x01>;
+			#size-cells = <0x01>;
+			compatible = "fsl,p1020-fcm-nand", "fsl,elbc-fcm-nand";
+			reg = <0x01 0x00 0x40000>;
+
+			partition@0 {
+				label = "NAND (RO) U-Boot Image";
+				read-only;
+				reg = <0x00 0x100000>;
+			};
+
+			partition@100000 {
+				label = "NAND (RO) DTB Image";
+				read-only;
+				reg = <0x100000 0x100000>;
+			};
+
+			partition@1100000 {
+				label = "NAND (RW) Writable User area";
+				reg = <0x1100000 0xf00000>;
+			};
+
+			partition@200000 {
+				label = "NAND (RO) Linux Kernel Image";
+				read-only;
+				reg = <0x200000 0x400000>;
+			};
+
+			partition@600000 {
+				label = "NAND (RO) Compressed RFS Image";
+				read-only;
+				reg = <0x600000 0x400000>;
+			};
+
+			partition@a00000 {
+				label = "NAND (RW) JFFS2 Root File System";
+				reg = <0xa00000 0x700000>;
+			};
+		};
+
+		nor@0,0 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			bank-width = <0x02>;
 			compatible = "cfi-flash";
 			device-width = <0x01>;
-			reg = <0x00 0x00 0x400000>;
+			reg = <0x00 0x00 0x1000000>;
 
 			partition@0 {
-				label = "rootfs";
-				reg = <0x00 0x370000>;
+				label = "NOR (RO) Vitesse-7385 Firmware";
+				read-only;
+				reg = <0x00 0x40000>;
 			};
 
-			partition@370000 {
-				label = "env";
-				reg = <0x370000 0x10000>;
+			partition@40000 {
+				label = "NOR (RO) DTB Image";
+				read-only;
+				reg = <0x40000 0x40000>;
 			};
 
-			partition@380000 {
-				label = "uboot";
-				reg = <0x380000 0x80000>;
+			partition@400000 {
+				label = "NOR (RW) JFFS2 Root File System";
+				reg = <0x400000 0xb00000>;
+			};
+
+			partition@80000 {
+				label = "NOR (RO) Linux Kernel Image";
+				read-only;
+				reg = <0x80000 0x380000>;
+			};
+
+			partition@f00000 {
+				label = "NOR (RO) U-Boot Image";
+				read-only;
+				reg = <0xf00000 0x100000>;
 			};
 		};
 	};
@@ -131,12 +199,12 @@
 		#address-cells = <0x01>;
 		#size-cells = <0x01>;
 		bus-frequency = <0x00>;
-		compatible = "fsl,p1020-immr" , "simple-bus";
+		compatible = "fsl,p1020-immr", "simple-bus";
 		device_type = "soc";
 		ranges = <0x00 0x00 0xffe00000 0x100000>;
 
 		crypto@30000 {
-			compatible = "fsl,sec3.3" , "fsl,sec3.1" , "fsl,sec3.0" , "fsl,sec2.4" , "fsl,sec2.2" , "fsl,sec2.1" , "fsl,sec2.0";
+			compatible = "fsl,sec3.3", "fsl,sec3.1", "fsl,sec3.0", "fsl,sec2.4", "fsl,sec2.2", "fsl,sec2.1", "fsl,sec2.0";
 			fsl,channel-fifo-len = <0x18>;
 			fsl,descriptor-types-mask = <0x3a30abf>;
 			fsl,exec-units-mask = <0x97c>;
@@ -160,13 +228,6 @@
 				reg = <0x00 0x80>;
 			};
 
-			dma-channel@80 {
-				cell-index = <0x01>;
-				compatible = "fsl,eloplus-dma-channel";
-				interrupts = <0x15 0x02 0x00 0x00>;
-				reg = <0x80 0x80>;
-			};
-
 			dma-channel@100 {
 				cell-index = <0x02>;
 				compatible = "fsl,eloplus-dma-channel";
@@ -180,6 +241,13 @@
 				interrupts = <0x17 0x02 0x00 0x00>;
 				reg = <0x180 0x80>;
 			};
+
+			dma-channel@80 {
+				cell-index = <0x01>;
+				compatible = "fsl,eloplus-dma-channel";
+				interrupts = <0x15 0x02 0x00 0x00>;
+				reg = <0x80 0x80>;
+			};
 		};
 
 		ecm-law@0 {
@@ -189,12 +257,12 @@
 		};
 
 		ecm@1000 {
-			compatible = "fsl,p1020-ecm" , "fsl,ecm";
+			compatible = "fsl,p1020-ecm", "fsl,ecm";
 			interrupts = <0x10 0x02 0x00 0x00>;
 			reg = <0x1000 0x1000>;
 		};
 
-		fec1: ethernet@b0000 {
+		ethernet@b0000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			compatible = "fsl,etsec2";
@@ -207,8 +275,6 @@
 			model = "eTSEC";
 			phy-connection-type = "rgmii-id";
 			ranges;
-			linux,phandle = <0x0c>;
-			phandle = <0x0c>;
 
 			queue-group@b0000 {
 				#address-cells = <0x01>;
@@ -290,14 +356,12 @@
 			reg = <0xe0000 0x1000>;
 		};
 
-		gpio6: gpio-controller@f000 {
+		gpio-controller@fc00 {
 			#gpio-cells = <0x02>;
-			compatible = "fsl,mpc8572-gpio";
+			compatible = "fsl,pq3-gpio";
 			gpio-controller;
 			interrupts = <0x2f 0x02 0x00 0x00>;
-			reg = <0xf000 0x100>;
-			linux,phandle = <0x0a>;
-			phandle = <0x0a>;
+			reg = <0xfc00 0x100>;
 		};
 
 		i2c@3000 {
@@ -309,9 +373,9 @@
 			interrupts = <0x2b 0x02 0x00 0x00>;
 			reg = <0x3000 0x100>;
 
-			rtc@30 {
-				compatible = "seiko,s35390a";
-				reg = <0x30>;
+			rtc@68 {
+				compatible = "dallas,ds1339";
+				reg = <0x68>;
 			};
 		};
 
@@ -323,11 +387,6 @@
 			dfsrr;
 			interrupts = <0x2b 0x02 0x00 0x00>;
 			reg = <0x3100 0x100>;
-
-			tpm@29 {
-				compatible = "tpm,tpm_i2c_atmel";
-				reg = <0x29>;
-			};
 		};
 
 		l2-cache-controller@20000 {
@@ -335,7 +394,6 @@
 			cache-size = <0x40000>;
 			compatible = "fsl,p1020-l2-cache-controller";
 			interrupts = <0x10 0x02 0x00 0x00>;
-			linux,phandle = <0x02>;
 			phandle = <0x02>;
 			reg = <0x20000 0x1000>;
 		};
@@ -346,54 +404,23 @@
 			compatible = "fsl,etsec2-mdio";
 			reg = <0x24000 0x1000 0xb0030 0x04>;
 
-			switch0: switch0@0 {
-				compatible = "marvell,mv88e6085";
+			ethernet-phy@0 {
+				interrupt-parent = <0x01>;
+				interrupts = <0x03 0x01>;
+				phandle = <0x03>;
 				reg = <0x00>;
-				dsa,member = <0x00 0x00>;
+			};
 
-				ports {
-					#address-cells = <0x01>;
-					#size-cells = <0x00>;
+			ethernet-phy@1 {
+				interrupt-parent = <0x01>;
+				interrupts = <0x02 0x01>;
+				phandle = <0x05>;
+				reg = <0x01>;
+			};
 
-					port@0 {
-						reg = <0x00>;
-						label = "lan0";
-					};
-
-					port@1 {
-						reg = <0x01>;
-						label = "lan1";
-						local-mac-address = [00 00 00 00 00 00];
-					};
-
-					port@2 {
-						reg = <0x02>;
-						label = "lan2";
-					};
-
-					switch0port5: port@5 {
-						reg = <0x05>;
-						phy-mode = "rgmii-txid";
-						link = <0x0d 0x0e>;
-						linux,phandle = <0x09>;
-						phandle = <0x09>;
-
-						fixed-link {
-							speed = <0x3e8>;
-							full-duplex;
-						};
-					};
-
-					port@6 {
-						reg = <0x06>;
-						ethernet = <0x0c>;
-
-						fixed-link {
-							speed = <0x64>;
-							full-duplex;
-						};
-					};
-				};
+			tbi-phy@2 {
+				device_type = "tbi-phy";
+				reg = <0x02>;
 			};
 		};
 
@@ -403,82 +430,10 @@
 			compatible = "fsl,etsec2-tbi";
 			reg = <0x25000 0x1000 0xb1030 0x04>;
 
-			switch1: switch1@0 {
-				compatible = "marvell,mv88e6085";
-				reg = <0x00>;
-				dsa,member = <0x00 0x01>;
-
-				ports {
-					#address-cells = <0x01>;
-					#size-cells = <0x00>;
-
-					port@0 {
-						reg = <0x00>;
-						label = "lan3";
-						phy-handle = <0x06>;
-					};
-
-					port@1 {
-						reg = <0x01>;
-						label = "lan4";
-						phy-handle = <0x07>;
-					};
-
-					port@2 {
-						reg = <0x02>;
-						label = "lan5";
-						phy-handle = <0x08>;
-					};
-
-					switch1port5: port@5 {
-						reg = <0x05>;
-						link = <0x04>;
-						phy-mode = "rgmii-txid";
-						linux,phandle = <0x0b>;
-						phandle = <0x0b>;
-
-						fixed-link {
-							speed = <0x3e8>;
-							full-duplex;
-						};
-					};
-
-					switch1port6: port@6 {
-						reg = <0x06>;
-						phy-mode = "rgmii-txid";
-						link = <0x09>;
-						linux,phandle = <0x0d>;
-						phandle = <0x0d>;
-
-						fixed-link {
-							speed = <0x3e8>;
-							full-duplex;
-						};
-					};
-				};
-
-				mdio-bus {
-					#address-cells = <0x01>;
-					#size-cells = <0x00>;
-
-					switch1phy0: switch1phy0@0 {
-						reg = <0x00>;
-						linux,phandle = <0x06>;
-						phandle = <0x06>;
-					};
-
-					switch1phy1: switch1phy0@1 {
-						reg = <0x01>;
-						linux,phandle = <0x07>;
-						phandle = <0x07>;
-					};
-
-					switch1phy2: switch1phy0@2 {
-						reg = <0x02>;
-						linux,phandle = <0x08>;
-						phandle = <0x08>;
-					};
-				};
+			tbi-phy@11 {
+				device_type = "tbi-phy";
+				phandle = <0x04>;
+				reg = <0x11>;
 			};
 		};
 
@@ -487,67 +442,6 @@
 			#size-cells = <0x00>;
 			compatible = "fsl,etsec2-tbi";
 			reg = <0x26000 0x1000 0xb1030 0x04>;
-
-			switch2: switch2@0 {
-				compatible = "marvell,mv88e6085";
-				reg = <0x00>;
-				dsa,member = <0x00 0x02>;
-
-				ports {
-					#address-cells = <0x01>;
-					#size-cells = <0x00>;
-
-					port@0 {
-						reg = <0x00>;
-						label = "lan6";
-					};
-
-					port@1 {
-						reg = <0x01>;
-						label = "lan7";
-					};
-
-					port@2 {
-						reg = <0x02>;
-						label = "lan8";
-					};
-
-					port@3 {
-						reg = <0x03>;
-						label = "optical3";
-
-						fixed-link {
-							speed = <0x3e8>;
-							full-duplex;
-							link = <0x0a 2>;
-						};
-					};
-
-					port@4 {
-						reg = <0x04>;
-						label = "optical4";
-
-						fixed-link {
-							speed = <0x3e8>;
-							full-duplex;
-							link = <0x0a 3>;
-						};
-					};
-
-					switch2port9: port@9 {
-						reg = <0x09>;
-						phy-mode = "rgmii-txid";
-						link = <0x0b 0x09>;
-						linux,phandle = <0x0e>;
-						phandle = <0x0e>;
-
-						fixed-link {
-							speed = <0x3e8>;
-							full-duplex;
-						};
-					};
-				};
-			};
 		};
 
 		memory-controller@2000 {
@@ -562,14 +456,8 @@
 			reg = <0x41400 0x200>;
 		};
 
-		message@42400 {
-			compatible = "fsl,mpic-v3.1-msgr";
-			interrupts = <0xb4 0x02 0x00 0x00 0xb5 0x02 0x00 0x00 0xb6 0x02 0x00 0x00 0xb7 0x02 0x00 0x00>;
-			reg = <0x42400 0x200>;
-		};
-
 		msi@41600 {
-			compatible = "fsl,p1020-msi" , "fsl,mpic-msi";
+			compatible = "fsl,mpic-msi";
 			interrupts = <0xe0 0x00 0x00 0x00 0xe1 0x00 0x00 0x00 0xe2 0x00 0x00 0x00 0xe3 0x00 0x00 0x00 0xe4 0x00 0x00 0x00 0xe5 0x00 0x00 0x00 0xe6 0x00 0x00 0x00 0xe7 0x00 0x00 0x00>;
 			msi-available-ranges = <0x00 0x100>;
 			reg = <0x41600 0x80>;
@@ -583,15 +471,14 @@
 			device_type = "open-pic";
 			interrupt-controller;
 			last-interrupt-source = <0xff>;
-			linux,phandle = <0x01>;
 			phandle = <0x01>;
 			reg = <0x40000 0x40000>;
 			single-cpu-affinity;
 		};
 
-		sdhci@2e000 {
+		sdhc@2e000 {
 			clock-frequency = <0x00>;
-			compatible = "fsl,p1020-esdhc" , "fsl,esdhc";
+			compatible = "fsl,p1020-esdhc", "fsl,esdhc";
 			interrupts = <0x48 0x02 0x00 0x00>;
 			reg = <0x2e000 0x1000>;
 			sdhci,auto-cmd12;
@@ -600,7 +487,7 @@
 		serial@4500 {
 			cell-index = <0x00>;
 			clock-frequency = <0x00>;
-			compatible = "fsl,ns16550" , "ns16550";
+			compatible = "fsl,ns16550", "ns16550";
 			device_type = "serial";
 			interrupts = <0x2a 0x02 0x00 0x00>;
 			reg = <0x4500 0x100>;
@@ -609,7 +496,7 @@
 		serial@4600 {
 			cell-index = <0x01>;
 			clock-frequency = <0x00>;
-			compatible = "fsl,ns16550" , "ns16550";
+			compatible = "fsl,ns16550", "ns16550";
 			device_type = "serial";
 			interrupts = <0x2a 0x02 0x00 0x00>;
 			reg = <0x4600 0x100>;
@@ -623,32 +510,60 @@
 			interrupts = <0x3b 0x02 0x00 0x00>;
 			reg = <0x7000 0x1000>;
 
-			fsl_m25p80@0 {
+			flash@0 {
 				#address-cells = <0x01>;
 				#size-cells = <0x01>;
-				compatible = "spansion,mr25h256" , "jedec,spi-nor";
+				compatible = "spansion,s25sl12801", "jedec,spi-nor";
 				reg = <0x00>;
 				spi-max-frequency = <0x2625a00>;
+
+				partition@dtb {
+					label = "dtb";
+					read-only;
+					reg = <0x80000 0x80000>;
+				};
+
+				partition@fs {
+					label = "file system";
+					read-only;
+					reg = <0x500000 0x400000>;
+				};
+
+				partition@jffs-fs {
+					label = "file system jffs2";
+					reg = <0x900000 0x700000>;
+				};
+
+				partition@kernel {
+					label = "kernel";
+					read-only;
+					reg = <0x100000 0x400000>;
+				};
 
 				partition@u-boot {
 					label = "u-boot";
 					read-only;
-					reg = <0x00 0x8000>;
+					reg = <0x00 0x80000>;
 				};
 			};
+		};
 
-			legerity@1 {
-				compatible = "zarlink,le88266";
-				mode = <0x01>;
-				reg = <0x01>;
-				spi-max-frequency = <0x7a120>;
-			};
+		timer@41100 {
+			compatible = "fsl,mpic-global-timer";
+			interrupts = <0x00 0x00 0x03 0x00 0x01 0x00 0x03 0x00 0x02 0x00 0x03 0x00 0x03 0x00 0x03 0x00>;
+			reg = <0x41100 0x100 0x41300 0x04>;
+		};
+
+		timer@42100 {
+			compatible = "fsl,mpic-global-timer";
+			interrupts = <0x04 0x00 0x03 0x00 0x05 0x00 0x03 0x00 0x06 0x00 0x03 0x00 0x07 0x00 0x03 0x00>;
+			reg = <0x42100 0x100 0x42300 0x04>;
 		};
 
 		usb@22000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x00>;
-			compatible = "fsl-usb2-dr-v1.6" , "fsl-usb2-dr";
+			compatible = "fsl-usb2-dr-v1.6", "fsl-usb2-dr";
 			dr_mode = "host";
 			interrupts = <0x1c 0x02 0x00 0x00>;
 			phy_type = "ulpi";
@@ -658,7 +573,7 @@
 		usb@23000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x00>;
-			compatible = "fsl-usb2-dr-v1.6" , "fsl-usb2-dr";
+			compatible = "fsl-usb2-dr-v1.6", "fsl-usb2-dr";
 			dr_mode = "host";
 			interrupts = <0x2e 0x02 0x00 0x00>;
 			phy_type = "ulpi";
