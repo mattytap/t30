@@ -1,0 +1,58 @@
+ps7_ethernet_0: ps7-ethernet@e000b000 {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        clock-names = "ref_clk", "aper_clk";
+        clocks = <&clkc 13>, <&clkc 30>;
+        compatible = "xlnx,ps7-ethernet-1.00.a";
+        interrupt-parent = <&ps7_scugic_0>;
+        interrupts = <0 22 4>;
+        local-mac-address = [00 0a 35 00 00 00];
+        fixed-link = <0 1 1000 0 0>;
+        phy-mode = "gmii";
+        reg = <0xe000b000 0x1000>;
+        xlnx,ptp-enet-clock = <0x69f6bcb>;
+        xlnx,enet-reset = "";
+        xlnx,eth-mode = <0x0>;
+        xlnx,has-mdio = <0x1>;
+        mdio_0: mdio {
+            #address-cells = <1>;
+            #size-cells = <0>;
+        } ;
+
+} ;
+
+dsa@0 {
+        compatible = "marvell,dsa";
+
+        #address-cells = <2>;
+        #size-cells = <0>;
+
+        interrupts = <10>;
+
+        dsa,ethernet = <&ps7_ethernet_0>;
+        dsa,mii-bus = <&mdio_0>;
+
+        switch@0 {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            reg = <22 0>;
+         port@3 {
+                reg = <3>;
+                label = "lan0";                
+         };
+         port@4 {
+                reg = <4>;
+                label = "lan1";
+         };
+         port@5 {
+                reg = <5>;
+                label = "lan2";
+         };
+         port@6 {
+                reg = <6>;
+                label = "cpu";       
+         };
+    };
+    };     
+
+} ;
