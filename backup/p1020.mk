@@ -42,9 +42,9 @@ TARGET_DEVICES += ocedo_panda
 define Device/t30
   DEVICE_VENDOR := WatchGuard
   DEVICE_MODEL := T30
-  DEVICE_PACKAGES := kmod-hwmon-lm90 kmod-gpio-pca953x kmod-eeprom-at24
+  DEVICE_PACKAGES := kmod-tpm-i2c-atmel uboot-envtools kmod-eeprom-at24
   BLOCKSIZE := 128k
-  KERNEL := kernel-bin | gzip | fit gzip $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+  KERNEL := kernel-bin | gzip | fit gzip $(KDIR)/image-$$(DEVICE_DTS).dtb
   SUPPORTED_DEVICES := fsl,P1020RDB
   IMAGES := sysupgrade.bin
   IMAGE/sysupgrade.bin := append-kernel | append-rootfs | pad-rootfs $$(BLOCKSIZE) | append-metadata
