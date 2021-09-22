@@ -4,7 +4,7 @@
 	#address-cells = <0x02>;
 	#size-cells = <0x02>;
 	compatible = "fsl,P1020RDB";
-	interrupt-parent = <0x01>;
+	interrupt-parent = <0x02>;
 	model = "fsl,P1011BOREN";
 
 	aliases {
@@ -229,8 +229,8 @@
 			cache-size = <0x40000>;
 			compatible = "fsl,p1020-l2-cache-controller";
 			interrupts = <0x10 0x02>;
-			linux,phandle = <0x02>;
-			phandle = <0x02>;
+			linux,phandle = <0x01>;
+			phandle = <0x01>;
 			reg = <0x20000 0x1000>;
 		};
 
@@ -322,8 +322,8 @@
 			device_type = "open-pic";
 			interrupt-controller;
 			last-interrupt-source = <0xff>;
-			linux,phandle = <0x01>;
-			phandle = <0x01>;
+			linux,phandle = <0x02>;
+			phandle = <0x02>;
 			reg = <0x40000 0x40000>;
 			single-cpu-affinity;
 		};
