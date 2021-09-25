@@ -71,7 +71,7 @@ machine_arch_initcall(t30, mpc85xx_common_publish_devices);
  */
 static int __init t30_probe(void)
 {
-	if (of_machine_is_compatible("wg,t30"))
+	if (of_machine_is_compatible("fsl,P1020RDB"))
 		return 1;
 	return 0;
 }
