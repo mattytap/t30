@@ -3,9 +3,9 @@
 / {
 	#address-cells = <0x02>;
 	#size-cells = <0x02>;
-	compatible = "fsl,T1042RDB_PI";
+	compatible = "watchguard,firebox-m200", fsl,T1042RDB_PI";
 	interrupt-parent = <0x01>;
-	model = "fsl,T1042RDB_PI";
+    model = "WatchGuard Firebox M200";
 
 	aliases {
 		bman = "/soc@ffe000000/bman@31a000";
