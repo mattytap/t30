@@ -1,0 +1,767 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2021.11.24 21:38:00 =~=~=~=~=~=~=~=~=~=~=~=
+
+
+U-Boot 2014.07 (Aug 12 2015 - 13:57:01)
+
+CPU0:  T1042E, Version: 1.1, (0x85280211)
+Core:  e5500, Version: 2.1, (0x80241021)
+Clock Configuration:
+       CPU0:1200 MHz, CPU1:1200 MHz, CPU2:1200 MHz, CPU3:1200 MHz, 
+       CCB:500  MHz,
+       DDR:800  MHz (1600 MT/s data rate) (Asynchronous), IFC:125  MHz
+       FMAN1: 500 MHz
+       QMAN:  250 MHz
+       PME:   250 MHz
+L1:    D-cache 32 KiB enabled
+       I-cache 32 KiB enabled
+Reset Configuration Word (RCW):
+       00000000: 0a18000c 0c000000 00000000 00000000
+       00000010: 86000002 80000002 ec027000 01000000
+       00000020: 00000000 00000000 00000000 000309fc
+       00000030: 00000000 01fd5206 00000000 00000000
+Board: T1042RDB, MB-M200 Ver.T07 2015-07-18
+I2C:   ready
+SPI:   ready
+DRAM:  Initializing....using SPD
+Detected UDIMM TS256MLK64W6N     
+Not enough bank(chip-select) for CS0+CS1 on controller 0, interleaving disabled!
+2 GiB (DDR3, 64-bit, CL=11, ECC off)
+Flash: 4 MiB
+L2:    256 KiB enabled
+Corenet Platform Cache: 256 KiB enabled
+Using SERDES1 Protocol: 134 (0x86)
+NAND:  0 MiB
+MMC:   FSL_SDHC: 0
+EEPROM: NXID v1
+PCIe1: Root Complex, no link, regs @ 0xfe240000
+PCIe1: Bus 00 - 00
+PCIe2: Root Complex, no link, regs @ 0xfe250000
+PCIe2: Bus 01 - 01
+PCIe3: Root Complex, no link, regs @ 0xfe260000
+PCIe3: Bus 02 - 02
+PCIe4: Root Complex, no link, regs @ 0xfe270000
+PCIe4: Bus 03 - 03
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Initializing Fman
+mdio_register: added 'FSL_MDIO0', read=7ff31da8, write=7ff31cc4
+Fman1: Uploading microcode version 107.4.1
+Init switch to forwarding mode... Done
+FM1@DTSEC1, FM1@DTSEC2, FM1@DTSEC3, FM1@DTSEC4 [PRIME], FM1@DTSEC5
+WatchGuard U-Boot 2014.07 - Aug 12 2015 13:57:01--------------------------------------------------------------------------||||||||||||||||||||||||-------------------------------------------------------------------------++++Use the ^ and v keys to select which entry is highlighted.Press enter to boot the selected OS.WatchGuard (SYSA)                                                     WatchGuard (SYSB)                                                     WatchGuard (SAFE MODE)                                                WatchGuard (SYSA BOOTDRIVE)                                           Hit any key to stop autoboot (except ENTER): 10  9 
+Booting SYSA
+34069 bytes read in 144 ms (230.5 KiB/s)
+5401120 bytes read in 494 ms (10.4 MiB/s)
+(Re)start USB...
+USB0:   USB EHCI 1.00
+scanning bus 0 for devices... 2 USB Device(s) found
+USB1:   USB EHCI 1.00
+scanning bus 1 for devices... 1 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+WARNING: adjusting available memory to 30000000
+## Booting kernel from Legacy Image at 01000000 ...
+   Image Name:   Linux-3.12.19-rt30
+   Created:      2019-10-22   3:58:18 UTC
+   Image Type:   PowerPC Linux Kernel Image (gzip compressed)
+   Data Size:    5401056 Bytes = 5.2 MiB
+   Load Address: 00000000
+   Entry Point:  00000000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 00fc0000
+   Booting using the fdt blob at 0xfc0000
+   Uncompressing Kernel Image ... OK
+   Loading Device Tree to 03fe4000, end 03fff514 ... OK
+Warning: MAC address for l2switch not found
+[    0.000000] Reserving 24MB of memory at 232MB for crashkernel (System RAM: 2048MB)
+[    0.000000] Using CoreNet Generic machine description
+[    0.000000] MMU: Supported page sizes
+[    0.000000]          4 KB as direct
+[    0.000000]       1024 KB as direct
+[    0.000000]       2048 KB as direct
+[    0.000000]       4096 KB as direct
+[    0.000000]      16384 KB as direct
+[    0.000000]      65536 KB as direct
+[    0.000000]     262144 KB as direct
+[    0.000000]    1048576 KB as direct
+[    0.000000] MMU: Book3E HW tablewalk not supported
+[    0.000000] No /soc@ffe000000/qman@318000 property 'fsl,qman-fqd', using memblock_alloc(0000000000400000)
+[    0.000000] No /soc@ffe000000/qman@318000 property 'fsl,qman-pfdr', using memblock_alloc(0000000002000000)
+[    0.000000] Qman ver:0a01,03,01,03
+[    0.000000] No /soc@ffe000000/bman@31a000 property 'fsl,bman-fbpr', using memblock_alloc(0000000001000000)
+[    0.000000] Bman ver:0a02,02,01
+[    0.000000] pme: No /soc@ffe000000/pme@316000 property 'fsl,pme-pdsr', using memblock_alloc(0x0000000001000000)
+[    0.000000] pme: No /soc@ffe000000/pme@316000 property 'fsl,pme-sre', using memblock_alloc(0x0000000000a00000)
+[    0.000000] No USDPAA memory, no 'usdpaa_mem' bootarg
+[    0.000000] printk: bootconsole [udbg0] enabled
+[    0.000000] CPU maps initialized for 1 thread per core
+[    0.000000] Starting Linux PPC64 #1 SMP Mon Oct 21 20:58:02 PDT 2019
+[    0.000000] -----------------------------------------------------
+[    0.000000] ppc64_pft_size                = 0x0
+[    0.000000] physicalMemorySize            = 0x80000000
+[    0.000000] ppc64_caches.dcache_line_size = 0x40
+[    0.000000] ppc64_caches.icache_line_size = 0x40
+[    0.000000] -----------------------------------------------------
+ <- setup_system()
+[    0.000000] Linux version 3.12.19-rt30 (release@cmrb02) (gcc version 4.8.3 (crosstool-NG 1.20.0) ) #1 SMP Mon Oct 21 20:58:02 PDT 2019
+CF000012
+
+Setup Arch
+[    0.000000] [boot]0012 Setup Arch
+[    0.000000] CoreNet Generic board
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x00000000-0x7fffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x00000000-0x7fffffff]
+[    0.000000] MMU: Allocated 2112 bytes of context maps for 255 contexts
+CF000015
+
+Setup Done
+[    0.000000] [boot]0015 Setup Done
+[    0.000000] percpu: Embedded 12 pages/cpu @c000000002c00000 s18496 r0 d30656 u262144
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 517120
+[    0.000000] Kernel command line: rootdelay=2 console=ttyS0,115200
+[    0.000000] PID hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.000000] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes)
+[    0.000000] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes)
+[    0.000000] Sorting __ex_table...
+[    0.000000] Memory: 1878432K/2097152K available (8380K kernel code, 1320K rwdata, 3104K rodata, 420K init, 2047K bss, 218720K reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: RCU debugfs-based tracing is enabled.
+[    0.000000] rcu: CONFIG_RCU_FANOUT set to non-default value of 32
+[    0.000000] rcu: RCU restricting CPUs from NR_CPUS=8 to nr_cpu_ids=4.
+[    0.000000] NR_IRQS:512 nr_irqs:512 16
+[    0.000000] mpic: Setting up MPIC " OpenPIC  " version 1.2 at ffe040000, max 4 CPUs
+[    0.000000] mpic: ISU size: 512, shift: 9, mask: 1ff
+[    0.000000] mpic: Initializing for 512 sources
+[    0.000000] clocksource: timebase mult[10000000] shift[23] registered
+[    0.000000] Console: colour dummy device 80x25
+[    0.000000]  WG CPU Model 1042 Count 4
+[    0.000000]  Setting RSL Erratum A_005337
+[    0.000000]  WG CRASH MIN RESERVE   24 MB
+[    0.000000] 
+[    0.000000] wg_kernel_init: Built Oct 21 2019 20:52:11
+[    0.000000] pid_max: default: 32768 minimum: 301
+[    0.000000] Mount-cache hash table entries: 256
+[    0.000000] mpic: requesting IPIs...
+[    0.000000] e500 family performance monitor hardware support registered
+[    0.000000] Brought up 4 CPUs
+[    0.000000] xor: measuring software checksum speed
+[    0.000000]    8regs     :  2736.000 MB/sec
+[    0.000000]    8regs_prefetch:  2235.000 MB/sec
+[    0.000000]    32regs    :  2631.000 MB/sec
+[    0.000000]    32regs_prefetch:  2350.000 MB/sec
+[    0.000000] xor: using function: 8regs (2736.000 MB/sec)
+[    0.000000] NET: Registered protocol family 16
+
+[    0.000000] Found FSL PCI host bridge at 0x0000000ffe240000. Firmware bus number: 0->0
+[    0.000000] PCI host bridge /pcie@ffe240000  ranges:
+[    0.000000]  MEM 0x0000000c00000000..0x0000000c0fffffff -> 0x00000000e0000000 
+[    0.000000]   IO 0x0000000ff8000000..0x0000000ff800ffff -> 0x0000000000000000
+[    0.000000] /pcie@ffe240000: PCICSRBAR @ 0xff000000
+[    0.000000] EDAC PCI0: Giving out device to module 'MPC85xx_edac' controller 'mpc85xx_pci_err': DEV 'ffe240000.pcie' (INTERRUPT)
+[    0.000000] MPC85xx_edac acquired irq 20 for PCI Err
+[    0.000000] MPC85xx_edac PCI err registered
+[    0.000000] Found FSL PCI host bridge at 0x0000000ffe250000. Firmware bus number: 0->0
+[    0.000000] PCI host bridge /pcie@ffe250000  ranges:
+[    0.000000]  MEM 0x0000000c10000000..0x0000000c1fffffff -> 0x00000000e0000000 
+[    0.000000]   IO 0x0000000ff8010000..0x0000000ff801ffff -> 0x0000000000000000
+[    0.000000] /pcie@ffe250000: PCICSRBAR @ 0xff000000
+[    0.000000] EDAC PCI1: Giving out device to module 'MPC85xx_edac' controller 'mpc85xx_pci_err': DEV 'ffe250000.pcie' (INTERRUPT)
+[    0.000000] MPC85xx_edac acquired irq 21 for PCI Err
+[    0.000000] MPC85xx_edac PCI err registered
+[    0.000000] Found FSL PCI host bridge at 0x0000000ffe260000. Firmware bus number: 0->0
+[    0.000000] PCI host bridge /pcie@ffe260000  ranges:
+[    0.000000]  MEM 0x0000000c20000000..0x0000000c2fffffff -> 0x00000000e0000000 
+[    0.000000]   IO 0x0000000ff8020000..0x0000000ff802ffff -> 0x0000000000000000
+[    0.000000] /pcie@ffe260000: PCICSRBAR @ 0xff000000
+[    0.000000] EDAC PCI2: Giving out device to module 'MPC85xx_edac' controller 'mpc85xx_pci_err': DEV 'ffe260000.pcie' (INTERRUPT)
+[    0.000000] MPC85xx_edac acquired irq 22 for PCI Err
+[    0.000000] MPC85xx_edac PCI err registered
+[    0.000000] Found FSL PCI host bridge at 0x0000000ffe270000. Firmware bus number: 0->0
+[    0.000000] PCI host bridge /pcie@ffe270000  ranges:
+[    0.000000]  MEM 0x0000000c30000000..0x0000000c3fffffff -> 0x00000000e0000000 
+[    0.000000]   IO 0x0000000ff8030000..0x0000000ff803ffff -> 0x0000000000000000
+[    0.000000] /pcie@ffe270000: PCICSRBAR @ 0xff000000
+[    0.000000] EDAC PCI3: Giving out device to module 'MPC85xx_edac' controller 'mpc85xx_pci_err': DEV 'ffe270000.pcie' (INTERRUPT)
+[    0.000000] MPC85xx_edac acquired irq 23 for PCI Err
+[    0.000000] MPC85xx_edac PCI err registered
+[    0.000000] PCI: Probing PCI hardware
+[    0.000000] fsl-pci ffe240000.pcie: PCI host bridge to bus 0000:00
+[    0.000000] pci_bus 0000:00: root bus resource [io  0x10000-0x1ffff] (bus address [0x0000-0xffff])
+[    0.000000] pci_bus 0000:00: root bus resource [mem 0xc00000000-0xc0fffffff] (bus address [0xe0000000-0xefffffff])
+[    0.000000] pci_bus 0000:00: root bus resource [bus 00]
+[    0.000000] pci 0000:00:00.0: ignoring class 0x0b2000 (doesn't match header type 01)
+[    0.000000] pci 0000:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.000000] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+[    0.000000] fsl-pci ffe250000.pcie: PCI host bridge to bus 0001:00
+[    0.000000] pci_bus 0001:00: root bus resource [io  0x21000-0x30fff] (bus address [0x0000-0xffff])
+[    0.000000] pci_bus 0001:00: root bus resource [mem 0xc10000000-0xc1fffffff] (bus address [0xe0000000-0xefffffff])
+[    0.000000] pci_bus 0001:00: root bus resource [bus 00]
+[    0.000000] pci 0001:00:00.0: ignoring class 0x0b2000 (doesn't match header type 01)
+[    0.000000] pci 0001:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.000000] pci 0001:00:00.0: PCI bridge to [bus 01-ff]
+[    0.000000] fsl-pci ffe260000.pcie: PCI host bridge to bus 0002:00
+[    0.000000] pci_bus 0002:00: root bus resource [io  0x32000-0x41fff] (bus address [0x0000-0xffff])
+[    0.000000] pci_bus 0002:00: root bus resource [mem 0xc20000000-0xc2fffffff] (bus address [0xe0000000-0xefffffff])
+[    0.000000] pci_bus 0002:00: root bus resource [bus 00]
+[    0.000000] pci 0002:00:00.0: ignoring class 0x0b2000 (doesn't match header type 01)
+[    0.000000] pci 0002:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.000000] pci 0002:00:00.0: PCI bridge to [bus 01-ff]
+[    0.000000] fsl-pci ffe270000.pcie: PCI host bridge to bus 0003:00
+[    0.000000] pci_bus 0003:00: root bus resource [io  0x43000-0x52fff] (bus address [0x0000-0xffff])
+[    0.000000] pci_bus 0003:00: root bus resource [mem 0xc30000000-0xc3fffffff] (bus address [0xe0000000-0xefffffff])
+[    0.000000] pci_bus 0003:00: root bus resource [bus 00]
+[    0.000000] pci 0003:00:00.0: ignoring class 0x0b2000 (doesn't match header type 01)
+[    0.000000] pci 0003:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.000000] pci 0003:00:00.0: PCI bridge to [bus 01-ff]
+[    0.000000] pci 0000:00:00.0: PCI bridge to [bus 01]
+[    0.000000] pci 0000:00:00.0:   bridge window [io  0x10000-0x1ffff]
+[    0.000000] pci 0000:00:00.0:   bridge window [mem 0xc00000000-0xc0fffffff]
+[    0.000000] pci 0001:00:00.0: PCI bridge to [bus 01]
+[    0.000000] pci 0001:00:00.0:   bridge window [io  0x21000-0x30fff]
+[    0.000000] pci 0001:00:00.0:   bridge window [mem 0xc10000000-0xc1fffffff]
+[    0.000000] pci 0002:00:00.0: PCI bridge to [bus 01]
+[    0.000000] pci 0002:00:00.0:   bridge window [io  0x32000-0x41fff]
+[    0.000000] pci 0002:00:00.0:   bridge window [mem 0xc20000000-0xc2fffffff]
+[    0.000000] pci 0003:00:00.0: PCI bridge to [bus 01]
+[    0.000000] pci 0003:00:00.0:   bridge window [io  0x43000-0x52fff]
+[    0.000000] pci 0003:00:00.0:   bridge window [mem 0xc30000000-0xc3fffffff]
+[    0.000000] bio: create slab <bio-0> at 0
+[    0.000000] raid6: int64x1    452 MB/s
+[    0.000000] raid6: int64x2    736 MB/s
+[    0.000000] raid6: int64x4   1020 MB/s
+[    0.000000] raid6: int64x8    828 MB/s
+[    0.000000] raid6: using algorithm int64x4 (1020 MB/s)
+[    0.000000] raid6: using intx1 recovery algorithm
+[    0.000000] Freescale Elo series DMA driver
+[    0.000000] fsl-elo-dma ffe100300.dma: #0 (fsl,eloplus-dma-channel), irq 28
+[    0.000000] fsl-elo-dma ffe100300.dma: #1 (fsl,eloplus-dma-channel), irq 29
+[    0.000000] fsl-elo-dma ffe100300.dma: #2 (fsl,eloplus-dma-channel), irq 30
+[    0.000000] fsl-elo-dma ffe100300.dma: #3 (fsl,eloplus-dma-channel), irq 31
+[    0.000000] fsl-elo-dma ffe100300.dma: #4 (fsl,eloplus-dma-channel), irq 76
+[    0.000000] fsl-elo-dma ffe100300.dma: #5 (fsl,eloplus-dma-channel), irq 77
+[    0.000000] fsl-elo-dma ffe100300.dma: #6 (fsl,eloplus-dma-channel), irq 78
+[    0.000000] fsl-elo-dma ffe100300.dma: #7 (fsl,eloplus-dma-channel), irq 79
+[    0.000000] fsl-elo-dma ffe101300.dma: #0 (fsl,eloplus-dma-channel), irq 32
+[    0.000000] fsl-elo-dma ffe101300.dma: #1 (fsl,eloplus-dma-channel), irq 33
+[    0.000000] fsl-elo-dma ffe101300.dma: #2 (fsl,eloplus-dma-channel), irq 34
+[    0.000000] fsl-elo-dma ffe101300.dma: #3 (fsl,eloplus-dma-channel), irq 35
+[    0.000000] fsl-elo-dma ffe101300.dma: #4 (fsl,eloplus-dma-channel), irq 80
+[    0.000000] fsl-elo-dma ffe101300.dma: #5 (fsl,eloplus-dma-channel), irq 81
+[    0.000000] fsl-elo-dma ffe101300.dma: #6 (fsl,eloplus-dma-channel), irq 82
+[    0.000000] fsl-elo-dma ffe101300.dma: #7 (fsl,eloplus-dma-channel), irq 83
+[    0.000000] SCSI subsystem initialized
+[    0.000000] usbcore: registered new interface driver usbfs
+[    0.000000] usbcore: registered new interface driver hub
+[    0.000000] usbcore: registered new device driver usb
+[    0.000000] alloc_chrdev_region: 254:0   rtc
+[    0.000000] alloc_chrdev_region: 253:0   pps
+[    0.000000] pps_core: LinuxPPS API ver. 1 registered
+[    0.000000] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.000000] alloc_chrdev_region: 252:0   ptp
+[    0.000000] PTP clock support registered
+[    0.000000] alloc_chrdev_region: 251:0   watchdog
+[    0.000000] EDAC MC: Ver: 3.0.0
+[    0.000000] Bman err interrupt handler present
+[    0.000000] Bman portal initialised, cpu 0
+[    0.000000] Bman portal initialised, cpu 1
+[    0.000000] Bman portal initialised, cpu 2
+[    0.000000] Bman portal initialised, cpu 3
+[    0.000000] Bman portals initialised
+[    0.000000] Qman err interrupt handler present
+[    0.000000] QMan: Allocated lookup table at 8000000000000000, entry count 65537
+[    0.000000] Qman portal initialised, cpu 0
+[    0.000000] Qman portal initialised, cpu 1
+[    0.000000] Qman portal initialised, cpu 2
+[    0.000000] Qman portal initialised, cpu 3
+[    0.000000] Qman portals initialised
+[    0.000000] Qman reset info for 12 portals at c000000079813b40
+[    0.000000] Bman: BPID allocator includes range 32:32
+[    0.000000] Qman: FQID allocator includes range 256:512
+[    0.000000] Qman: FQID allocator includes range 32768:32768
+[    0.000000] Qman: CGRID allocator includes range 0:256
+[    0.000000] Qman: pool channel allocator includes range 1025:15
+[    0.000000] Switched to clocksource timebase
+[    0.000000] FS-Cache: Loaded
+[    0.000000] misc_register: 10,  63 cachefiles
+[    0.000000] CacheFiles: Loaded
+[    0.000000] NET: Registered protocol family 2
+[    0.000000] TCP established hash table entries: 16384 (order: 6, 262144 bytes)
+[    0.000000] TCP bind hash table entries: 16384 (order: 6, 262144 bytes)
+[    0.000000] TCP: Hash tables configured (established 16384 bind 16384)
+[    0.000000] TCP: reno registered
+[    0.000000] UDP hash table entries: 1024 (order: 3, 32768 bytes)
+[    0.000000] UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes)
+[    0.000000] NET: Registered protocol family 1
+[    0.000000] audit: initializing netlink socket (disabled)
+[    0.000000] type=2000 audit(1.160:1): initialized
+[    0.000000] HugeTLB registered 1 MB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 4 MB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 16 MB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 64 MB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 256 MB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 1 GB page size, pre-allocated 0 pages
+[    0.000000] NTFS driver 2.1.30 [Flags: R/O].
+[    0.000000] jffs2: version 2.2. (NAND) (SUMMARY)  � 2001-2006 Red Hat, Inc.
+[    0.000000] msgmni has been set to 3799
+[    0.000000] async_tx: api initialized (async)
+[    0.000000] alloc_chrdev_region: 250:0   bsg
+[    0.000000] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 250)
+[    0.000000] io scheduler noop registered
+[    0.000000] io scheduler deadline registered
+[    0.000000] io scheduler cfq registered (default)
+[    0.000000] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    0.000000] serial8250.0: ttyS0 at MMIO 0xffe11c500 (irq = 36, base_baud = 15625000) is a 16550A_FSL64
+[    0.000000] console [ttyS0] enabled, bootconsole disabled
+[    0.000000] console [ttyS0] enabled, bootconsole disabled
+[    0.000000] serial8250.0: ttyS1 at MMIO 0xffe11c600 (irq = 36, base_baud = 15625000) is a 16550A_FSL64
+[    0.000000] serial8250.0: ttyS2 at MMIO 0xffe11d500 (irq = 37, base_baud = 15625000) is a 16550A_FSL64
+[    0.000000] serial8250.0: ttyS3 at MMIO 0xffe11d600 (irq = 37, base_baud = 15625000) is a 16550A_FSL64
+[    0.000000] ePAPR hypervisor byte channel driver
+[    0.000000] misc_register: 10, 183 hw_random
+[    0.000000] brd: module loaded
+[    0.000000] misc_register: 10, 237 loop-control
+[    0.000000] loop: module loaded
+[    0.000000] st: Version 20101219, fixed bufsize 32768, s/g segs 256
+[    0.000000] fsl-sata ffe220000.sata: Sata FSL Platform/CSB Driver init
+[    0.000000] scsi0 : sata_fsl
+[    0.000000] ata1: SATA max UDMA/133 irq 68
+[    0.000000] fsl-sata ffe221000.sata: Sata FSL Platform/CSB Driver init
+[    0.000000] scsi1 : sata_fsl
+[    0.000000] ata2: SATA max UDMA/133 irq 69
+[    0.000000] fefc00000.nor: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer ID 0x000001 Chip ID 0x001a00
+[    0.000000] Amd/Fujitsu Extended Query Table at 0x0040
+[    0.000000]   Amd/Fujitsu Extended Query version 1.3.
+[    0.000000] number of CFI chips: 1
+[    0.000000] 11 ofpart partitions found on MTD device fefc00000.nor
+[    0.000000] Creating 11 MTD partitions on "fefc00000.nor":
+[    0.000000] 0x000000000000-0x000000010000 : "NOR (RW) LANNER RCW Code"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000010000-0x000000030000 : "NOR (RW) WG CFG0"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000030000-0x000000040000 : "NOR (RW) WG CFG1"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000040000-0x000000050000 : "NOR (RW) WG MFG DATA"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000050000-0x000000100000 : "NOR (RW) WG bootOpt Data & reserved"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000100000-0x0000001b0000 : "NOR (RW) WG extra reserved 1"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x0000001b0000-0x000000260000 : "NOR (RW) WG extra reserved 2"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000260000-0x000000320000 : "NOR (RW) WG U-Boot FAILSAFE"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000320000-0x000000330000 : "NOR (RW) FMAN"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000330000-0x000000340000 : "NOR (RW) WG U-Boot ENV"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] 0x000000340000-0x000000400000 : "NOR (RW) WG U-Boot Image"
+[    0.000000] ftl_cs: FTL header not found.
+[    0.000000] fsl_espi ffe110000.spi: master is unqueued, this is deprecated
+[    0.000000] m25p80 spi32766.0: unrecognized JEDEC id ffffff
+[    0.000000] fsl_espi ffe110000.spi: at 0x8000080080176000 (irq = 53)
+[    0.000000] libphy: Fixed MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] Freescale FM module (Oct 21 2019:20:55:23), FMD API version 21.1.0
+[    0.000000] Freescale FM Ports module (Oct 21 2019:20:55:24)
+[    0.000000] dpaa_debugfs: FSL DPAA Ethernet debugfs entries ()
+[    0.000000] dpaa_generic_debugfs: FSL DPAA Ethernet debugfs entries ()
+[    0.000000] fsl_mac: fsl_mac: FSL FMan MAC API based driver ()
+[    0.000000] fman_memac_init: IF_MODE    2
+[    0.000000] fsl_mac ffe4e4000.ethernet: FMan MEMAC
+[    0.000000] fsl_mac ffe4e4000.ethernet: FMan MAC address: 00:90:7f:d5:ec:c0
+[    0.000000] fman_memac_init: IF_MODE    2
+[    0.000000] fsl_mac ffe4e0000.ethernet: FMan MEMAC
+[    0.000000] fsl_mac ffe4e0000.ethernet: FMan MAC address: 00:90:7f:d5:ec:c1
+[    0.000000] fman_memac_init: IF_MODE    2
+[    0.000000] fsl_mac ffe4e2000.ethernet: FMan MEMAC
+[    0.000000] fsl_mac ffe4e2000.ethernet: FMan MAC address: 00:90:7f:d5:ec:c2
+[    0.000000] fman_memac_init: IF_MODE 8006
+[    0.000000] fsl_mac ffe4e6000.ethernet: FMan MEMAC
+[    0.000000] fsl_mac ffe4e6000.ethernet: FMan MAC address: 00:90:7f:d5:ec:c3
+[    0.000000] fman_memac_init: IF_MODE 8006
+[    0.000000] fsl_mac ffe4e8000.ethernet: FMan MEMAC
+[    0.000000] fsl_mac ffe4e8000.ethernet: FMan MAC address: 00:90:7f:d5:ec:c4
+[    0.000000] fsl_dpa: FSL DPAA Ethernet driver ()
+[    0.000000] fsl_dpa: fsl_dpa: Probed interface eth0
+[    0.000000] fsl_dpa: fsl_dpa: Probed interface eth1
+[    0.000000] fsl_dpa: fsl_dpa: Probed interface eth2
+[    0.000000] fsl_dpa: fsl_dpa: Probed interface eth3
+[    0.000000] fsl_dpa: fsl_dpa: Probed interface eth4
+[    0.000000] fsl_dpa_shared: FSL DPAA Shared Ethernet driver ()
+[    0.000000] fsl_dpa_proxy: FSL DPAA Proxy initialization driver ()
+[    0.000000] fsl_oh: FSL FMan Offline Parsing port driver ()
+[    0.000000] alloc_chrdev_region: 247:0   uio
+[    0.000000] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.000000] ehci-pci: EHCI PCI platform driver
+[    0.000000] fsl-ehci fsl-ehci.0: Freescale On-Chip EHCI Host Controller
+[    0.000000] fsl-ehci fsl-ehci.0: new USB bus registered, assigned bus number 1
+[    0.000000] fsl-ehci fsl-ehci.0: irq 44, io mem 0xffe210000
+[    0.000000] fsl-ehci fsl-ehci.0: USB 2.0 started, EHCI 1.00
+[    0.000000] hub 1-0:1.0: USB hub found
+[    0.000000] hub 1-0:1.0: 1 port detected
+[    0.000000] fsl-ehci fsl-ehci.1: Freescale On-Chip EHCI Host Controller
+[    0.000000] fsl-ehci fsl-ehci.1: new USB bus registered, assigned bus number 2
+[    0.000000] ata1: No Device OR PHYRDY change,Hstatus = 0xa0000000
+[    0.000000] fsl-ehci fsl-ehci.1: irq 45, io mem 0xffe211000
+[    0.000000] ata1: SATA link down (SStatus 10 SControl 300)
+[    0.000000] ata2: No Device OR PHYRDY change,Hstatus = 0x80000000
+[    0.000000] ata2: SATA link down (SStatus 10 SControl 300)
+[    0.000000] fsl-ehci fsl-ehci.1: USB 2.0 started, EHCI 1.00
+[    0.000000] hub 2-0:1.0: USB hub found
+[    0.000000] hub 2-0:1.0: 1 port detected
+[    0.000000] usbcore: registered new interface driver usbserial
+[    0.000000] usbcore: registered new interface driver usbserial_generic
+[    0.000000] usbserial: USB Serial support registered for generic
+[    0.000000] usbcore: registered new interface driver pl2303
+[    0.000000] usbserial: USB Serial support registered for pl2303
+[    0.000000] i2c /dev entries driver
+[    0.000000] mpc-i2c ffe118000.i2c: timeout 1000000 us
+[    0.000000] rtc-rs5c372 0-0032: rs5c372a found, 24hr, driver version 0.6
+[    0.000000] rtc-rs5c372 0-0032: rtc core: registered rtc-rs5c372 as rtc0
+[    0.000000] mpc-i2c ffe118100.i2c: timeout 1000000 us
+[    0.000000] mpc-i2c ffe119000.i2c: timeout 1000000 us
+[    0.000000] mpc-i2c ffe119100.i2c: timeout 1000000 us
+[    0.000000] booke_wdt: powerpc book-e watchdog driver loaded
+[    0.000000] misc_register: 10, 130 watchdog
+[    0.000000] md: raid6 personality registered for level 6
+[    0.000000] md: raid5 personality registered for level 5
+[    0.000000] md: raid4 personality registered for level 4
+[    0.000000] Freescale(R) MPC85xx EDAC driver, (C) 2006 Montavista Software
+[    0.000000] mpc85xx_mc_err_probe: No ECC DIMMs discovered
+[    0.000000] sdhci: Secure Digital Host Controller Interface driver
+[    0.000000] sdhci: Copyright(c) Pierre Ossman
+[    0.000000] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.000000] /soc@ffe000000/sdhc@114000: voltage-ranges unspecified
+[    0.000000] MJ: caps[0] : caps[1] = 0x37fa0000:0x00100010
+[    0.000000] MJ: mmc->ocr_avail = 0x00360080, ocr_avail (host->ocr_mask) = 0x00360080
+[    0.000000] mmc0: SDHCI controller on ffe114000.sdhc [ffe114000.sdhc] using ADMA
+[    0.000000] Freescale USDPAA process driver
+[    0.000000] fsl-usdpaa: no region found
+[    0.000000] Freescale USDPAA process IRQ driver
+[    0.000000] misc_register: 10,  62 fsl-usdpaa-irq
+[    0.000000] fsl-pme ffe316000.pme: ver: 0x00100202
+[    0.000000] Freescale pme2 db driver
+[    0.000000] misc_register: 10,  61 pme_db
+[    0.000000] Freescale pme2 scan driver
+[    0.000000] misc_register: 10,  60 pme_scan
+[    0.000000] fsl-pme2-scan: device pme_scan registered
+[    0.000000] Freescale hypervisor management driver
+[    0.000000] fsl-hv: no hypervisor found
+[    0.000000] TCP: cubic registered
+[    0.000000] Initializing XFRM netlink socket
+[    0.000000] NET: Registered protocol family 10
+[    0.000000] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[    0.000000] NET: Registered protocol family 17
+[    0.000000] NET: Registered protocol family 15
+[    0.000000] misc_register: 10,  59 cpu_dma_latency
+[    0.000000] misc_register: 10,  58 network_latency
+[    0.000000] misc_register: 10,  57 network_throughput
+[    0.000000] misc_register: 10,  56 ubi_ctrl
+[    0.000000] fsl_dpa_macless: FSL DPAA MACless Ethernet driver ()
+[    0.000000] fsl_dpa_generic: FSL DPAA Generic Ethernet driver ()
+[    0.000000] rtc-rs5c372 0-0032: setting system clock to 2021-11-24 21:38:16 UTC (1637789896)
+[    0.000000] Waiting 2 sec before mounting root device...
+[    0.000000] mmc0: new high speed SDHC card at address 59b4
+[    0.000000] mmcblk0: mmc0:59b4 SDC   7.34 GiB 
+[    0.000000]  mmcblk0: p1 p2 p3 p4 < p5 p6 p7 >
+[    0.000000] usb 1-1: new high-speed USB device number 2 using fsl-ehci
+[    0.000000] md: Waiting for all devices to be available before autodetect
+[    0.000000] md: If you don't use raid, use raid=noautodetect
+[    0.000000] md: Autodetecting RAID arrays.
+[    0.000000] md: Scanned 0 and added 0 devices.
+[    0.000000] md: autorun ...
+[    0.000000] md: ... autorun DONE.
+[    0.000000] EXT2-fs (mmcblk0p3): warning: mounting unchecked fs, running e2fsck is recommended
+[    0.000000] VFS: Mounted root (ext2 filesystem) on device 179:3.
+[    0.000000] Freeing unused kernel memory: 420K (c000000000b3f000 - c000000000ba8000)
+[    0.000000] Running /etc/runlevel/1/S02rootrw...Done.
+[    0.000000] Running /etc/runlevel/1/S05mproc...Done.
+[    0.000000] Running /etc/runlevel/1/S05sysfs...Done.
+[    0.000000] Running /etc/runlevel/1/S10armled...Done.
+[    0.000000] Running /etc/runlevel/1/S10diskpt...Done.
+[    0.000000] Running /etc/runlevel/1/S18seed-random...Reseeded random generator
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S10var...Done.
+[    0.000000] Running /etc/runlevel/2/S11shm...Done.
+[    0.000000] Running /etc/runlevel/2/S13devpts...Done.
+[    0.000000] Running /etc/runlevel/2/S14temp...Done.
+[    0.000000] Running /etc/runlevel/2/S15hosts...Done.
+[    0.000000] Running /etc/runlevel/2/S16pending...mke2fs 1.41.0 (10-Jul-2008)
+[    0.000000] Filesystem label=
+[    0.000000] OS type: Linux
+[    0.000000] Block size=4096 (log=2)
+[    0.000000] Fragment size=4096 (log=2)
+[    0.000000] 146016 inodes, 583680 blocks
+[    0.000000] 29184 blocks (5.00%) reserved for the super user
+[    0.000000] First data block=0
+[    0.000000] Maximum filesystem blocks=599785472
+[    0.000000] 18 block groups
+[    0.000000] 32768 blocks per group, 32768 fragments per group
+[    0.000000] 8112 inodes per group
+[    0.000000] Superblock backups stored on blocks: 
+[    0.000000] 32768, 98304, 163840, 229376, 294912
+[    0.000000] 
+[    0.000000] Writing inode tables:  0/18 1/18 2/18 3/18 4/18 5/18 6/18 7/18 8/18 9/1810/1811/1812/1813/1814/1815/1816/1817/18done                            
+[    0.000000] Writing superblocks and filesystem accounting information: done
+[    0.000000] 
+[    0.000000] This filesystem will be automatically checked every 32 mounts or
+[    0.000000] 180 days, whichever comes first.  Use tune2fs -c or -i to override.
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S18data...fsck 1.41.0 (10-Jul-2008)
+[    0.000000] e2fsck 1.41.0 (10-Jul-2008)
+[    0.000000] /dev/wgrd.sysa_data: recovering journal
+[    0.000000] /dev/wgrd.sysa_data: clean, 534/48672 files, 9527/194560 blocks
+[    0.000000] kjournald starting.  Commit interval 5 seconds
+[    0.000000] EXT3-fs (mmcblk0p5): using internal journal
+[    0.000000] EXT3-fs (mmcblk0p5): mounted filesystem with ordered data mode
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S18data2...fsck 1.41.0 (10-Jul-2008)
+[    0.000000] e2fsck 1.41.0 (10-Jul-2008)
+[    0.000000] /dev/wgrd.data2: recovering journal
+[    0.000000] /dev/wgrd.data2: clean, 12/197200 files, 29948/788480 blocks
+[    0.000000] kjournald starting.  Commit interval 5 seconds
+[    0.000000] EXT3-fs (mmcblk0p7): using internal journal
+[    0.000000] EXT3-fs (mmcblk0p7): mounted filesystem with ordered data mode
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S18hotplug...Done.
+[    0.000000] Running /etc/runlevel/2/S18kdump...Modified cmdline:"console=ttyS0,115200" elfcorehdr=247192K root=/dev/mmcblk0p3 
+[    0.000000] segment[0].mem:0xe800000 memsz:9789440
+[    0.000000] segment[1].mem:0xf156000 memsz:65536
+[    0.000000] segment[2].mem:0xf166000 memsz:4096
+[    0.000000] segment[3].mem:0xf167000 memsz:36864
+[    0.000000] segment[4].mem:0xffef000 memsz:69632
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S19caam...[    0.000000] platform caam_qi.0: Linux CAAM Queue I/F driver initialised
+[    0.000000] caam ffe300000.crypto: Entropy delay = 3200
+[    0.000000] caam ffe300000.crypto: Instantiated RNG4 SH0
+[    0.000000] caam ffe300000.crypto: Instantiated RNG4 SH1
+[    0.000000] caam ffe300000.crypto: device ID = 0x0a12040000000000 (Era 6)
+[    0.000000] caam ffe300000.crypto: job rings = 4, qi = 1
+[    0.000000] caam_jr ffe301000.jr: registering rng-caam
+[    0.000000] caam algorithms registered in /proc/crypto
+[    0.000000] platform caam_qi.0: fsl,sec-v5.0 algorithms registered in /proc/crypto
+[    0.000000] caam ffe300000.crypto: fsl,sec-v5.0 algorithms registered in /proc/crypto
+Done.
+[    0.000000] Running /etc/runlevel/2/S19ipv6...disabling IPv6 autoconf for all
+[    0.000000] disabling IPv6 autoconf for default
+[    0.000000] enable IPv6 forwarding for all
+[    0.000000] enable IPv6 forwarding for default
+[    0.000000] disabling IPv6 for all
+[    0.000000] disabling IPv6 for default
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S19platform...Done.
+[    0.000000] Ru[    0.000000] usbcore: registered new interface driver usb-storage
+nning /etc/runlevel/2/S20adminhome...Done.
+[    0.000000] Running /etc/runlevel/2/S20cleanup-db[    0.000000] wgipc: module license 'Watchguard Proprietary' taints kernel.
+g...Done.
+[    0.000000] Runnin[    0.000000] Disabling lock debugging due to kernel taint
+g /etc/runlevel/2/S20gwc...Done.
+[    0.000000] Running /etc/runlevel/2/S20sigs...Done.
+[    0.000000] Running /etc/runlevel/2/S20usb...Done.
+[    0.000000] [    0.000000] 
+[    0.000000] wg_dsa_init: Built Oct 21 2019 20:59:38CPU 1042 SW 1 Flags 2929
+[    0.000000] 
+Running /etc/runlevel/2/S20wgbas[    0.000000] wg_dsa_init: mdio found ffe4fc000.mdio
+e...Done.
+[    0.000000] Runnin[    0.000000] wg_dsa_init: Rename eth4 -> eth10
+g /etc/runlevel/2/S21eth...[    0.000000] wg_dsa_init: Rename eth3 -> eth11
+[    0.000000] wg_dpaa_set_L2_off: eth10 L2 off 2
+[    0.000000] Distributed Switch Architecture driver version 0.1
+[    0.000000] mv88e6123_61_65_probe: SW16  88E6171
+[    0.000000] eth10[0]: detected a Marvell 88E6171 switch
+[    0.000000] libphy: dsa slave smi: probed
+[    0.000000] dsa_slave_create: eth3 Marvell headers enabled, len 16
+[    0.000000] dsa_slave_create: eth4 Marvell headers enabled, len 16
+[    0.000000] dsa_slave_create: eth5 Marvell headers enabled, len 16
+[    0.000000] wg_dsa_init: Split sw10 code 0 dsa c000000006233f00
+[    0.000000] wg_dsa_init: Rename eth10 -> sw10
+[    0.000000] device sw10 entered promiscuous mode
+[    0.000000] dsa_change_master_mtu: sw10 MTU 1506
+[    0.000000] wg_dpaa_set_L2_off: eth11 L2 off 2
+[    0.000000] mv88e6123_61_65_probe: SW17  88E6171
+[    0.000000] eth11[0]: detected a Marvell 88E6171 switch
+[    0.000000] libphy: dsa slave smi: probed
+[    0.000000] dsa_slave_create: eth6 Marvell headers enabled, len 16
+[    0.000000] dsa_slave_create: eth7 Marvell headers enabled, len 16
+[    0.000000] wg_dsa_init: Split sw11 code 0 dsa c0000000064fb300
+[    0.000000] wg_dsa_init: Rename eth11 -> sw11
+[    0.000000] device sw11 entered promiscuous mode
+[    0.000000] dsa_change_master_mtu: sw11 MTU 1506
+Done.
+[    0.000000] Running /etc/runlevel/2/S22hwmon...[    0.000000] hwmon_vid: Unknown VRM version of your CPU
+[    0.000000] misc_register: 10, 212 watchdog1
+[    0.000000] w83793 0-002d: Registered watchdog chardev major 10, minor: 212
+[    0.000000] w83793 0-002c: set bank to 248 failed, fall back to bank 251, read reg 0xc error
+[    0.000000] w83793 0-002c: duplicate addresses 0x48, use force_subclients
+Done.
+[    0.000000] Running /etc/runlevel/2/S22login...Done.
+[    0.000000] Running /etc/runlevel/2/S22rtc...Done.
+[    0.000000] Running /etc/runlevel/2/S23pppoe...[    0.000000] PPP generic driver version 2.4.2
+[    0.000000] PPP MPPE Compression module registered
+[    0.000000] PPP Deflate Compression module registered
+[    0.000000] NET: Registered protocol family 24
+Done.
+[    0.000000] Running /etc/runlevel/2/S23sslvpn...[    0.000000] tun: Universal TUN/TAP device driver, 1.6
+[    0.000000] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+[    0.000000] misc_register: 10, 200 tun
+Done.
+[    0.000000] Running /etc/runlevel/2/S24fmcsetup...[    0.000000] FM-0-port-1g-RX-0  [ 0] START 0 NIA 0x00440000
+[    0.000000] FM-0-port-1g-RX-1  [ 1] START 0 NIA 0x00440000
+[    0.000000] FM-0-port-1g-RX-2  [ 2] START 0 NIA 0x00440000
+[    0.000000] FM-0-port-1g-RX-3  [ 3] START 0 NIA 0x00440020
+[    0.000000] FM-0-port-1g-RX-4  [ 4] START 0 NIA 0x00440020
+FMC Model M200
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S24l2tpvpn...[    0.000000] l2tp_core: L2TP core driver, V2.0
+[    0.000000] l2tp_netlink: L2TP netlink interface
+[    0.000000] l2tp_ppp: PPPoL2TP kernel driver, V2.0
+Done.
+[    0.000000] Running /etc/runlevel/2/S24nginx...Done.
+[    0.000000] Running /etc/runlevel/2/S25core...Done.
+[    0.000000] Running /etc/runlevel/2/S25wgcfg...Info: No conversion required from version 12.5.1 to 12.5.1.
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S27cfgcheck...[    0.000000] fsl_dpa ethernet.22 sw10: link up, 1000 Mb/s, full duplex, flow control disabled
+[    0.000000] fsl_dpa ethernet.21 sw11: link up, 1000 Mb/s, full duplex, flow control disabled
+Config ok
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S29wgcore...Done.
+[    0.000000] Running /etc/runlevel/2/S30backup...Done.
+[    0.000000] Running /etc/runlevel/2/S30net...[    0.000000] Bridge firewalling registered
+[    0.000000] Ebtables v2.0 registered
+[    0.000000] gre: GRE over IPv4 demultiplexor driver
+[    0.000000] ip_gre: GRE over IPv4 tunneling driver
+[    0.000000] bvpn vif handlers are registered
+[    0.000000] IPv4 over IPSec tunneling driver
+[    0.000000] 8021q: 802.1Q VLAN Support v1.8
+[    0.000000] bonding: Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
+[    0.000000] bonding: MII link monitoring set to 100 ms
+Done.
+[    0.000000] Running /etc/runlevel/2/S30upgrade...Done.
+[    0.000000] Running /etc/runlevel/2/S31cacert...Done.
+[    0.000000] Running /etc/runlevel/2/S31cert...Done.
+[    0.000000] Running /etc/runlevel/2/S31crypto...Done.
+[    0.000000] Running /etc/runlevel/2/S31xtables...[    0.000000] Netfilter messages via NETLINK v0.30.
+[    0.000000] ip_set: protocol 6
+[    0.000000] nf_conntrack version 0.5.0 (15201 buckets, 60804 max)
+[    0.000000] nf_conntrack_init_start: conntrack max=60804 high water mark=48643
+[    0.000000] ip_tables: (C) 2000-2006 Netfilter Core Team
+[    0.000000] nf_ct_ftp: Maximum expected value 1
+[    0.000000] ctnetlink v0.93: registering with nfnetlink.
+[    0.000000] arp_tables: (C) 2002 David S. Miller
+[    0.000000] u32 classifier
+[    0.000000]     input device check on
+[    0.000000]     Actions configured
+[    0.000000] Mirror/redirect action on
+Done.
+[    0.000000] Running /etc/runlevel/2/S31xtables6...Done.
+[    0.000000] Running /etc/runlevel/2/S32auth...Done.
+[    0.000000] Running /etc/runlevel/2/S32clst...Done.
+[    0.000000] Running /etc/runlevel/2/S32modemdrivers...[    0.000000] usbcore: registered new interface driver option
+[    0.000000] usbserial: USB Serial support registered for GSM modem (1-port)
+[    0.000000] usbcore: registered new interface driver wg_sierra
+[    0.000000] usbserial: USB Serial support registered for Sierra USB modem
+[    0.000000] usbcore: registered new interface driver cdc_wdm
+[    0.000000] usbcore: registered new interface driver cdc_acm
+[    0.000000] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+[    0.000000] usbcore: registered new interface driver GobiSerial
+[    0.000000] usbserial: USB Serial support registered for GobiSerial
+[    0.000000] GobiSerial: 2013-10-08/NTGR_2.12:GobiSerial
+[    0.000000] usbcore: registered new interface driver cdc_ether
+[    0.000000] usbcore: registered new interface driver rndis_host
+[    0.000000] usbcore: registered new interface driver sierra_net
+[    0.000000] GobiNet: 2013-10-08/NTGR_2.21
+[    0.000000] usbcore: registered new interface driver GobiNet
+[    0.000000] usbcore: registered new interface driver qmi_wwan
+[    0.000000] usbcore: registered new interface driver cdc_ncm
+[    0.000000] usbcore: registered new interface driver huawei_cdc_ncm
+Done.
+[    0.000000] Running /etc/runlevel/2/S32wgxt...[    0.000000] nf_fastpath: Loaded
+[    0.000000] ipt_addrpairs_6 v0.1.0: Loading
+[    0.000000] xt_session6 : Loading
+[    0.000000] xt_session6 : Loaded limit 1000 hash 1024 WG IPC ID 184549376 (0x0B000000)
+[    0.000000] ipt_addrpairs: ADDRPAIRS SCALE Set MAX 16384 Entry Max 16384
+[    0.000000] ipt_addrpairs: v1.0.0 Loaded
+[    0.000000] xt_ifset: Loaded with set limit 5000 and entry limit 5000
+[    0.000000] xt_classify : Loaded
+[    0.000000] xt_master: Loaded
+[    0.000000] xt_MASTER: Loaded
+[    0.000000] xt_WGTEE: Loaded
+[    0.000000] Schedule: Loaded
+[    0.000000] xt_POLICY: Loaded
+[    0.000000] xt_policy : Loaded
+[    0.000000] xt_EXPIRES: Loaded
+[    0.000000] xt_IPPRECEDENCE: Loaded
+[    0.000000] xt_PKTCACHE: Loaded
+[    0.000000] xt_session : Loaded limit 1000 hash 1024 WG IPC ID 92274688 (0x05800000)
+[    0.000000] xt_CONNCLASSIFY: Loaded
+[    0.000000] xt_connclassify : Loaded
+[    0.000000] xt_ipspoof : Loaded
+[    0.000000] xt_LBDNAT: Loaded
+[    0.000000] xt_MWAN: Loaded
+[    0.000000] xt_psd: Loaded
+[    0.000000] xt_ipsd: Loaded
+[    0.000000] xt_ddos: Loaded
+[    0.000000] xt_dos: Loaded
+[    0.000000] xt_wgaccount: Loaded
+[    0.000000] xt_block : Loaded limit 1000 hash 1024 WG IPC ID 155189248
+[    0.000000] xt_localroute: Loaded
+[    0.000000] xt_duplicate: Loaded
+[    0.000000] xt_WGCLASSIFY: Loaded
+[    0.000000] xt_fqdn : Loading
+[    0.000000] xt_fqdn : Loaded
+[    0.000000] devsec : Loaded limit 1000 hash 1024 WGIPC ID 260046848 (0x0F800000)
+[    0.000000] GEO:xt_geo_init:902 Loaded limit 300 hash 256 WGIPC ID 272629760 (0x10400000)
+[    0.000000] xt_sdwan: Loaded
+[    0.000000] xt_WGCT: Loaded
+Done.
+[    0.000000] Running /etc/runlevel/2/S33appID...[    0.000000] * Make sure sizeof(struct sw_struct)=128 is consistent
+[    0.000000] WG workqueue: Loaded
+[    0.000000] Loaded
+Done.
+[    0.000000] Running /etc/runlevel/2/S35nropen...updated /proc/sys/fs/nr_open with new value: 2097152
+[   25[    0.000000] Proxy glue: Loaded 21:16:56 (248)
+.797083] Done.
+[    0.000000] Running /etc/runlevel/2/S35proxy...Setting the proxy tmpfs size to size=475m.
+[    0.000000] /usr/bin/pxyhelper returned 0
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S35scand...Done.
+[    0.000000] Running /etc/runlevel/2/S36dynroute...Done.
+[    0.000000] Running /etc/runlevel/2/S42ssh...Done.
+[    0.000000] Running /etc/runlevel/2/S44sysb...Done.
+[    0.000000] Running /etc/runlevel/2/S45clientless...Done.
+[    0.000000] Running /etc/runlevel/2/S45portald...Done.
+[    0.000000] Running /etc/runlevel/2/S50nettune...Setting IPv4 route garbage collection timeout to 2 minutes
+[    0.000000] Setting promote_secondaries to 1
+[    0.000000] Setting icmp_errors_use_inbound_ifaddr to 1
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S80seed-random...Saved random seed
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S90bootmon...Done.
+[    0.000000] Running /etc/runlevel/2/S90kcrashrep...Done.
+[    0.000000] Running /etc/runlevel/2/S98setmacs...setting device eth0 to 00:90:7f:d5:ec:c0
+[    0.000000] setting device eth1 to 00:90:7f:d5:ec:c1
+[    0.000000] setting device eth2 to 00:90:7f:d5:ec:c2
+[    0.000000] setting device eth3 to 00:90:7f:d5:ec:c3
+[    0.000000] setting device eth4 to 00:90:7f:d5:ec:c4
+[    0.000000] setting device eth5 to 00:90:7f:d5:ec:c5
+[    0.000000] setting device eth6 to 00:90:7f:d5:ec:c6
+[    0.000000] setting device eth7 to 00:90:7f:d5:ec:c7
+[    0.000000] Done.
+[    0.000000] Running /etc/runlevel/2/S99igmp...Done.
+[    0.000000] Running /etc/runlevel/2/S99rootro...Done.
+[    0.000000] Running /etc/runlevel/3/S80chkupgrade...Done.
+[    0.000000] Running /etc/runlevel/4/S51armled...Done.
+[    0.000000] Running /etc/runlevel/4/S81ckwebupload...Done.
+
+
+M200 login: 

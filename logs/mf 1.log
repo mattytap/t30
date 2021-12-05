@@ -1,0 +1,517 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2021.11.29 15:00:10 =~=~=~=~=~=~=~=~=~=~=~=
+
+
+U-Boot 2014.07 (Aug 12 2015 - 13:57:01)
+
+CPU0:  T1042E, Version: 1.1, (0x85280211)
+Core:  e5500, Version: 2.1, (0x80241021)
+Clock Configuration:
+       CPU0:1200 MHz, CPU1:1200 MHz, CPU2:1200 MHz, CPU3:1200 MHz, 
+       CCB:500  MHz,
+       DDR:800  MHz (1600 MT/s data rate) (Asynchronous), IFC:125  MHz
+       FMAN1: 500 MHz
+       QMAN:  250 MHz
+       PME:   250 MHz
+L1:    D-cache 32 KiB enabled
+       I-cache 32 KiB enabled
+Reset Configuration Word (RCW):
+       00000000: 0a18000c 0c000000 00000000 00000000
+       00000010: 86000002 80000002 ec027000 01000000
+       00000020: 00000000 00000000 00000000 000309fc
+       00000030: 00000000 01fd5206 00000000 00000000
+Board: T1042RDB, MB-M200 Ver.T07 2015-07-18
+I2C:   ready
+SPI:   ready
+DRAM:  Initializing....using SPD
+Detected UDIMM TS256MLK64W6N     
+Not enough bank(chip-select) for CS0+CS1 on controller 0, interleaving disabled!
+2 GiB (DDR3, 64-bit, CL=11, ECC off)
+Flash: 4 MiB
+L2:    256 KiB enabled
+Corenet Platform Cache: 256 KiB enabled
+Using SERDES1 Protocol: 134 (0x86)
+NAND:  0 MiB
+MMC:   FSL_SDHC: 0
+EEPROM: NXID v1
+PCIe1: Root Complex, no link, regs @ 0xfe240000
+PCIe1: Bus 00 - 00
+PCIe2: Root Complex, no link, regs @ 0xfe250000
+PCIe2: Bus 01 - 01
+PCIe3: Root Complex, no link, regs @ 0xfe260000
+PCIe3: Bus 02 - 02
+PCIe4: Root Complex, no link, regs @ 0xfe270000
+PCIe4: Bus 03 - 03
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Initializing Fman
+mdio_register: added 'FSL_MDIO0', read=7ff31da8, write=7ff31cc4
+Fman1: Uploading microcode version 107.4.1
+Init switch to forwarding mode... Done
+FM1@DTSEC1, FM1@DTSEC2, FM1@DTSEC3, FM1@DTSEC4 [PRIME], FM1@DTSEC5
+WatchGuard U-Boot 2014.07 - Aug 12 2015 13:57:01--------------------------------------------------------------------------||||||||||||||||||||||||-------------------------------------------------------------------------++++Use the ^ and v keys to select which entry is highlighted.Press enter to boot the selected OS.WatchGuard (SYSA)                                                     WatchGuard (SYSB)                                                     WatchGuard (SAFE MODE)                                                WatchGuard (SYSA BOOTDRIVE)                                           Hit any key to stop autoboot (except ENTER): 10  9 WatchGuard (SYSA)                                                     WatchGuard (SYSB)                                                     
+Booting SYSB
+33045 bytes read in 76 ms (423.8 KiB/s)
+7940020 bytes read in 590 ms (12.8 MiB/s)
+(Re)start USB...
+USB0:   USB EHCI 1.00
+scanning bus 0 for devices... 2 USB Device(s) found
+USB1:   USB EHCI 1.00
+scanning bus 1 for devices... 1 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+WARNING: adjusting available memory to 30000000
+## Loading kernel from FIT Image at 01000000 ...
+   Using 'config@1' configuration
+   Trying 'kernel@1' kernel subimage
+     Description:  POWERPC OpenWrt Linux-5.4.158
+     Created:      2021-11-27   4:09:32 UTC
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Start:   0x010000ec
+     Data Size:    7905089 Bytes = 7.5 MiB
+     Architecture: PowerPC
+     OS:           Linux
+     Load Address: 0x00000000
+     Entry Point:  0x00000000
+     Hash algo:    crc32
+     Hash value:   21912a42
+     Hash algo:    sha1
+     Hash value:   bb8cdf501b16ca09c4287a624c076304b2b4da21
+   Verifying Hash Integrity ... crc32+ sha1+ OK
+## Flattened Device Tree blob at 00fc0000
+   Booting using the fdt blob at 0xfc0000
+   Uncompressing Kernel Image ... OK
+   Loading Device Tree to 03fe4000, end 03fff114 ... OK
+Warning: MAC address for l2switch not found
+[    0.000000] Memory CAM mapping: 256/256/256 Mb, residual: 1280Mb
+[    0.000000] Linux version 5.4.158 (matt@SonyVAIO) (gcc version 8.4.0 (OpenWrt GCC 8.4.0 r16390-0e0192098a)) #0 SMP Sat Nov 27 04:09:32 2021
+[    0.000000] Using CoreNet Generic machine description
+[    0.000000] printk: bootconsole [udbg0] enabled
+[    0.000000] CPU maps initialized for 1 thread per core
+[    0.000000] -----------------------------------------------------
+[    0.000000] phys_mem_size     = 0x80000000
+[    0.000000] dcache_bsize      = 0x40
+[    0.000000] icache_bsize      = 0x40
+[    0.000000] cpu_features      = 0x00000000000003b4
+[    0.000000]   possible        = 0x00000000000103bc
+[    0.000000]   always          = 0x0000000000000120
+[    0.000000] cpu_user_features = 0x8c008000 0x08000000
+[    0.000000] mmu_features      = 0x000a0010
+[    0.000000] -----------------------------------------------------
+[    0.000000] CoreNet Generic board
+[    0.000000] barrier-nospec: using isync; sync as speculation barrier
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000000000000-0x000000002fffffff]
+[    0.000000]   HighMem  [mem 0x0000000030000000-0x000000007fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x000000007fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000007fffffff]
+[    0.000000] MMU: Allocated 1088 bytes of context maps for 255 contexts
+[    0.000000] percpu: Embedded 12 pages/cpu s20172 r8192 d20788 u49152
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 522560
+[    0.000000] Kernel command line: rootdelay=2 console=ttyS0,115200
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 1997188K/2097152K available (7524K kernel code, 264K rwdata, 1608K rodata, 4648K init, 241K bss, 99964K reserved, 0K cma-reserved, 1310712K highmem)
+[    0.000000] Kernel virtual memory layout:
+[    0.000000]   * 0xfff5f000..0xfffff000  : fixmap
+[    0.000000]   * 0xffc00000..0xffe00000  : highmem PTEs
+[    0.000000]   * 0xffbfd000..0xffc00000  : early ioremap
+[    0.000000]   * 0xf1000000..0xffbfd000  : vmalloc & ioremap
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: RCU event tracing is enabled.
+[    0.000000] rcu: RCU restricting CPUs from NR_CPUS=8 to nr_cpu_ids=4.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] NR_IRQS: 512, nr_irqs: 512, preallocated irqs: 16
+[    0.000000] mpic: Setting up MPIC " OpenPIC  " version 1.2 at ffe040000, max 4 CPUs
+[    0.000000] mpic: ISU size: 512, shift: 9, mask: 1ff
+[    0.000000] mpic: Initializing for 512 sources
+[    0.000000] random: get_random_u32 called from start_kernel+0x2e8/0x49c with crng_init=0
+[    0.000000] clocksource: timebase: mask: 0xffffffffffffffff max_cycles: 0xe6a171046, max_idle_ns: 881590405314 ns
+[    0.000000] clocksource: timebase mult[10000000] shift[23] registered
+[    0.000000] pid_max: default: 32768 minimum: 301
+[    0.000000] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.000000] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.000000] rcu: Hierarchical SRCU implementation.
+[    0.000000] smp: Bringing up secondary CPUs ...
+[    0.000000] smp: Brought up 1 node, 4 CPUs
+[    0.000000] Using standard scheduler topology
+[    0.000000] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.000000] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.000000] xor: measuring software checksum speed
+[    0.000000]    8regs     :  1460.000 MB/sec
+[    0.000000]    8regs_prefetch:  1179.000 MB/sec
+[    0.000000]    32regs    :  1458.000 MB/sec
+[    0.000000]    32regs_prefetch:  1297.000 MB/sec
+[    0.000000] xor: using function: 8regs (1460.000 MB/sec)
+[    0.000000] NET: Registered protocol family 16
+             
+[    0.000000] Found FSL PCI host bridge at 0x0000000ffe240000. Firmware bus number: 0->0
+[    0.000000] PCI host bridge /pcie@ffe240000  ranges:
+[    0.000000]  MEM 0x0000000c00000000..0x0000000c0fffffff -> 0x00000000e0000000 
+[    0.000000]   IO 0x0000000ff8000000..0x0000000ff800ffff -> 0x0000000000000000
+[    0.000000] /pcie@ffe240000: PCICSRBAR @ 0xff000000
+[    0.000000] setup_pci_atmu: end of DRAM 80000000
+[    0.000000] Found FSL PCI host bridge at 0x0000000ffe250000. Firmware bus number: 0->0
+[    0.000000] PCI host bridge /pcie@ffe250000  ranges:
+[    0.000000]  MEM 0x0000000c10000000..0x0000000c1fffffff -> 0x00000000e0000000 
+[    0.000000]   IO 0x0000000ff8010000..0x0000000ff801ffff -> 0x0000000000000000
+[    0.000000] /pcie@ffe250000: PCICSRBAR @ 0xff000000
+[    0.000000] setup_pci_atmu: end of DRAM 80000000
+[    0.000000] Found FSL PCI host bridge at 0x0000000ffe260000. Firmware bus number: 0->0
+[    0.000000] PCI host bridge /pcie@ffe260000  ranges:
+[    0.000000]  MEM 0x0000000c20000000..0x0000000c2fffffff -> 0x00000000e0000000 
+[    0.000000]   IO 0x0000000ff8020000..0x0000000ff802ffff -> 0x0000000000000000
+[    0.000000] /pcie@ffe260000: PCICSRBAR @ 0xff000000
+[    0.000000] setup_pci_atmu: end of DRAM 80000000
+[    0.000000] Found FSL PCI host bridge at 0x0000000ffe270000. Firmware bus number: 0->0
+[    0.000000] PCI host bridge /pcie@ffe270000  ranges:
+[    0.000000]  MEM 0x0000000c30000000..0x0000000c3fffffff -> 0x00000000e0000000 
+[    0.000000]   IO 0x0000000ff8030000..0x0000000ff803ffff -> 0x0000000000000000
+[    0.000000] /pcie@ffe270000: PCICSRBAR @ 0xff000000
+[    0.000000] setup_pci_atmu: end of DRAM 80000000
+[    0.000000] Machine: fsl,T1042RDB_PI
+[    0.000000] SoC family: QorIQ T1040
+[    0.000000] SoC ID: svr:0x85280211, Revision: 1.1
+[    0.000000] PCI: Probing PCI hardware
+[    0.000000] fsl-pci ffe240000.pcie: PCI host bridge to bus 0000:00
+[    0.000000] pci_bus 0000:00: root bus resource [io  0xf1050000-0xf105ffff] (bus address [0x0000-0xffff])
+[    0.000000] pci_bus 0000:00: root bus resource [mem 0xc00000000-0xc0fffffff] (bus address [0xe0000000-0xefffffff])
+[    0.000000] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    0.000000] pci_bus 0000:00: busn_res: [bus 00-ff] end is updated to ff
+[    0.000000] pci 0000:00:00.0: [1957:0824] type 01 class 0x0b2000
+[    0.000000] pci 0000:00:00.0: reg 0x10: [mem 0xff000000-0xffffffff]
+[    0.000000] pci 0000:00:00.0: supports D1 D2
+[    0.000000] pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    0.000000] pci 0000:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.000000] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+[    0.000000] pci 0000:00:00.0:   bridge window [io  0xf1050000-0xf1050fff]
+[    0.000000] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[    0.000000] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[    0.000000] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    0.000000] pci_bus 0000:00: busn_res: [bus 00-ff] end is updated to 01
+[    0.000000] fsl-pci ffe250000.pcie: PCI host bridge to bus 0001:02
+[    0.000000] pci_bus 0001:02: root bus resource [io  0xf1090000-0xf109ffff] (bus address [0x0000-0xffff])
+[    0.000000] pci_bus 0001:02: root bus resource [mem 0xc10000000-0xc1fffffff] (bus address [0xe0000000-0xefffffff])
+[    0.000000] pci_bus 0001:02: root bus resource [bus 02-ff]
+[    0.000000] pci_bus 0001:02: busn_res: [bus 02-ff] end is updated to ff
+[    0.000000] pci 0001:02:00.0: [1957:0824] type 01 class 0x0b2000
+[    0.000000] pci 0001:02:00.0: reg 0x10: [mem 0xff000000-0xffffffff]
+[    0.000000] pci 0001:02:00.0: supports D1 D2
+[    0.000000] pci 0001:02:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    0.000000] pci 0001:02:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.000000] pci 0001:02:00.0: PCI bridge to [bus 03-ff]
+[    0.000000] pci 0001:02:00.0:   bridge window [io  0xf1090000-0xf1090fff]
+[    0.000000] pci 0001:02:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[    0.000000] pci 0001:02:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[    0.000000] pci_bus 0001:03: busn_res: [bus 03-ff] end is updated to 03
+[    0.000000] pci_bus 0001:02: busn_res: [bus 02-ff] end is updated to 03
+[    0.000000] fsl-pci ffe260000.pcie: PCI host bridge to bus 0002:04
+[    0.000000] pci_bus 0002:04: root bus resource [io  0xf10d0000-0xf10dffff] (bus address [0x0000-0xffff])
+[    0.000000] pci_bus 0002:04: root bus resource [mem 0xc20000000-0xc2fffffff] (bus address [0xe0000000-0xefffffff])
+[    0.000000] pci_bus 0002:04: root bus resource [bus 04-ff]
+[    0.000000] pci_bus 0002:04: busn_res: [bus 04-ff] end is updated to ff
+[    0.000000] pci 0002:04:00.0: [1957:0824] type 01 class 0x0b2000
+[    0.000000] pci 0002:04:00.0: reg 0x10: [mem 0xff000000-0xffffffff]
+[    0.000000] pci 0002:04:00.0: supports D1 D2
+[    0.000000] pci 0002:04:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    0.000000] pci 0002:04:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.000000] pci 0002:04:00.0: PCI bridge to [bus 05-ff]
+[    0.000000] pci 0002:04:00.0:   bridge window [io  0xf10d0000-0xf10d0fff]
+[    0.000000] pci 0002:04:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[    0.000000] pci 0002:04:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[    0.000000] pci_bus 0002:05: busn_res: [bus 05-ff] end is updated to 05
+[    0.000000] pci_bus 0002:04: busn_res: [bus 04-ff] end is updated to 05
+[    0.000000] fsl-pci ffe270000.pcie: PCI host bridge to bus 0003:06
+[    0.000000] pci_bus 0003:06: root bus resource [io  0xf1110000-0xf111ffff] (bus address [0x0000-0xffff])
+[    0.000000] pci_bus 0003:06: root bus resource [mem 0xc30000000-0xc3fffffff] (bus address [0xe0000000-0xefffffff])
+[    0.000000] pci_bus 0003:06: root bus resource [bus 06-ff]
+[    0.000000] pci_bus 0003:06: busn_res: [bus 06-ff] end is updated to ff
+[    0.000000] pci 0003:06:00.0: [1957:0824] type 01 class 0x0b2000
+[    0.000000] pci 0003:06:00.0: reg 0x10: [mem 0xff000000-0xffffffff]
+[    0.000000] pci 0003:06:00.0: supports D1 D2
+[    0.000000] pci 0003:06:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    0.000000] pci 0003:06:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    0.000000] pci 0003:06:00.0: PCI bridge to [bus 07-ff]
+[    0.000000] pci 0003:06:00.0:   bridge window [io  0xf1110000-0xf1110fff]
+[    0.000000] pci 0003:06:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[    0.000000] pci 0003:06:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[    0.000000] pci_bus 0003:07: busn_res: [bus 07-ff] end is updated to 07
+[    0.000000] pci_bus 0003:06: busn_res: [bus 06-ff] end is updated to 07
+[    0.000000] PCI: Cannot allocate resource region 0 of device 0000:00:00.0, will remap
+[    0.000000] PCI: Cannot allocate resource region 0 of device 0001:02:00.0, will remap
+[    0.000000] PCI: Cannot allocate resource region 0 of device 0002:04:00.0, will remap
+[    0.000000] PCI: Cannot allocate resource region 0 of device 0003:06:00.0, will remap
+[    0.000000] pci 0000:00:00.0: BAR 0: no space for [mem size 0x01000000]
+[    0.000000] pci 0000:00:00.0: BAR 0: failed to assign [mem size 0x01000000]
+[    0.000000] pci 0000:00:00.0: PCI bridge to [bus 01]
+[    0.000000] pci 0000:00:00.0:   bridge window [io  0xf1050000-0xf105ffff]
+[    0.000000] pci 0000:00:00.0:   bridge window [mem 0xc00000000-0xc0fffffff]
+[    0.000000] pci_bus 0000:00: Some PCI device resources are unassigned, try booting with pci=realloc
+[    0.000000] pci_bus 0000:00: resource 4 [io  0xf1050000-0xf105ffff]
+[    0.000000] pci_bus 0000:00: resource 5 [mem 0xc00000000-0xc0fffffff]
+[    0.000000] pci_bus 0000:01: resource 0 [io  0xf1050000-0xf105ffff]
+[    0.000000] pci_bus 0000:01: resource 1 [mem 0xc00000000-0xc0fffffff]
+[    0.000000] pci 0001:02:00.0: BAR 0: no space for [mem size 0x01000000]
+[    0.000000] pci 0001:02:00.0: BAR 0: failed to assign [mem size 0x01000000]
+[    0.000000] pci 0001:02:00.0: PCI bridge to [bus 03]
+[    0.000000] pci 0001:02:00.0:   bridge window [io  0xf1090000-0xf109ffff]
+[    0.000000] pci 0001:02:00.0:   bridge window [mem 0xc10000000-0xc1fffffff]
+[    0.000000] pci_bus 0001:02: Some PCI device resources are unassigned, try booting with pci=realloc
+[    0.000000] pci_bus 0001:02: resource 4 [io  0xf1090000-0xf109ffff]
+[    0.000000] pci_bus 0001:02: resource 5 [mem 0xc10000000-0xc1fffffff]
+[    0.000000] pci_bus 0001:03: resource 0 [io  0xf1090000-0xf109ffff]
+[    0.000000] pci_bus 0001:03: resource 1 [mem 0xc10000000-0xc1fffffff]
+[    0.000000] pci 0002:04:00.0: BAR 0: no space for [mem size 0x01000000]
+[    0.000000] pci 0002:04:00.0: BAR 0: failed to assign [mem size 0x01000000]
+[    0.000000] pci 0002:04:00.0: PCI bridge to [bus 05]
+[    0.000000] pci 0002:04:00.0:   bridge window [io  0xf10d0000-0xf10dffff]
+[    0.000000] pci 0002:04:00.0:   bridge window [mem 0xc20000000-0xc2fffffff]
+[    0.000000] pci_bus 0002:04: Some PCI device resources are unassigned, try booting with pci=realloc
+[    0.000000] pci_bus 0002:04: resource 4 [io  0xf10d0000-0xf10dffff]
+[    0.000000] pci_bus 0002:04: resource 5 [mem 0xc20000000-0xc2fffffff]
+[    0.000000] pci_bus 0002:05: resource 0 [io  0xf10d0000-0xf10dffff]
+[    0.000000] pci_bus 0002:05: resource 1 [mem 0xc20000000-0xc2fffffff]
+[    0.000000] pci 0003:06:00.0: BAR 0: no space for [mem size 0x01000000]
+[    0.000000] pci 0003:06:00.0: BAR 0: failed to assign [mem size 0x01000000]
+[    0.000000] pci 0003:06:00.0: PCI bridge to [bus 07]
+[    0.000000] pci 0003:06:00.0:   bridge window [io  0xf1110000-0xf111ffff]
+[    0.000000] pci 0003:06:00.0:   bridge window [mem 0xc30000000-0xc3fffffff]
+[    0.000000] pci_bus 0003:06: Some PCI device resources are unassigned, try booting with pci=realloc
+[    0.000000] pci_bus 0003:06: resource 4 [io  0xf1110000-0xf111ffff]
+[    0.000000] pci_bus 0003:06: resource 5 [mem 0xc30000000-0xc3fffffff]
+[    0.000000] pci_bus 0003:07: resource 0 [io  0xf1110000-0xf111ffff]
+[    0.000000] pci_bus 0003:07: resource 1 [mem 0xc30000000-0xc3fffffff]
+[    0.000000] HugeTLB registered 4.00 MiB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 16.0 MiB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 64.0 MiB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 256 MiB page size, pre-allocated 0 pages
+[    0.000000] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.000000] raid6: using algorithm int32x8 gen() 0 MB/s
+[    0.000000] raid6: .... xor() 0 MB/s, rmw enabled
+[    0.000000] raid6: using intx1 recovery algorithm
+[    0.000000] Freescale Elo series DMA driver
+[    0.000000] fsl-elo-dma ffe100300.dma: #0 (fsl,eloplus-dma-channel), irq 28
+[    0.000000] fsl-elo-dma ffe100300.dma: #2 (fsl,eloplus-dma-channel), irq 30
+[    0.000000] fsl-elo-dma ffe100300.dma: #3 (fsl,eloplus-dma-channel), irq 31
+[    0.000000] fsl-elo-dma ffe100300.dma: #4 (fsl,eloplus-dma-channel), irq 76
+[    0.000000] fsl-elo-dma ffe100300.dma: #5 (fsl,eloplus-dma-channel), irq 77
+[    0.000000] fsl-elo-dma ffe100300.dma: #6 (fsl,eloplus-dma-channel), irq 78
+[    0.000000] fsl-elo-dma ffe100300.dma: #7 (fsl,eloplus-dma-channel), irq 79
+[    0.000000] fsl-elo-dma ffe100300.dma: #1 (fsl,eloplus-dma-channel), irq 29
+[    0.000000] fsl-elo-dma ffe101300.dma: #0 (fsl,eloplus-dma-channel), irq 32
+[    0.000000] fsl-elo-dma ffe101300.dma: #2 (fsl,eloplus-dma-channel), irq 34
+[    0.000000] fsl-elo-dma ffe101300.dma: #3 (fsl,eloplus-dma-channel), irq 35
+[    0.000000] fsl-elo-dma ffe101300.dma: #4 (fsl,eloplus-dma-channel), irq 80
+[    0.000000] fsl-elo-dma ffe101300.dma: #5 (fsl,eloplus-dma-channel), irq 81
+[    0.000000] fsl-elo-dma ffe101300.dma: #6 (fsl,eloplus-dma-channel), irq 82
+[    0.000000] fsl-elo-dma ffe101300.dma: #7 (fsl,eloplus-dma-channel), irq 83
+[    0.000000] fsl-elo-dma ffe101300.dma: #1 (fsl,eloplus-dma-channel), irq 33
+[    0.000000] SCSI subsystem initialized
+[    0.000000] pps_core: LinuxPPS API ver. 1 registered
+[    0.000000] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.000000] PTP clock support registered
+[    0.000000] EDAC MC: Ver: 3.0.0
+[    0.000000] workqueue: max_active 576 requested for napi_workq is out of range, clamping between 1 and 512
+[    0.000000] clocksource: Switched to clocksource timebase
+[    0.000000] NET: Registered protocol family 2
+[    0.000000] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.000000] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 6144 bytes, linear)
+[    0.000000] TCP established hash table entries: 8192 (order: 3, 32768 bytes, linear)
+[    0.000000] TCP bind hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.000000] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.000000] UDP hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.000000] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.000000] NET: Registered protocol family 1
+[    0.000000] PCI: CLS 0 bytes, default 64
+[    0.000000] workingset: timestamp_bits=14 max_order=19 bucket_order=5
+[    0.000000] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.000000] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.000000] async_tx: api initialized (async)
+[    0.000000] bounce: pool size: 64 pages
+[    0.000000] pcieport 0000:00:00.0: PME: Signaling with IRQ 20
+[    0.000000] pcieport 0001:02:00.0: PME: Signaling with IRQ 21
+[    0.000000] pcieport 0002:04:00.0: PME: Signaling with IRQ 22
+[    0.000000] pcieport 0003:06:00.0: PME: Signaling with IRQ 23
+[    0.000000] bman_ccsr ffe31a000.bman: No memory-region found for index 0
+[    0.000000] bman_ccsr ffe31a000.bman: qbman_init_private_mem() failed 0xffffffed
+[    0.000000] qman_ccsr ffe318000.qman: No memory-region found for index 0
+[    0.000000] qman_ccsr ffe318000.qman: qbman_init_private_mem() for FQD failed 0xffffffed
+[    0.000000] bman_portal ff4000000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff4010000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff4014000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff4018000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff401c000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff4020000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff4024000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff4004000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff4008000.bman-portal: failing probe due to bman probe error
+[    0.000000] bman_portal ff400c000.bman-portal: failing probe due to bman probe error
+[    0.000000] qman_portal ff6000000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff6010000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff6014000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff6018000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff601c000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff6020000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff6024000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff6004000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff6008000.qman-portal: failing probe due to qman probe error
+[    0.000000] qman_portal ff600c000.qman-portal: failing probe due to qman probe error
+[    0.000000] Serial: 8250/16550 driver, 2 ports, IRQ sharing enabled
+[    0.000000] printk: console [ttyS0] disabled
++HH3.786163] serial8250.0: ttyS0 at MMIO 0xffe11c500 (irq = 36, base_baud = 15625000) is a 16550A_FSL64
+[    0.000000] printk: console [ttyS0] enabled
+[    0.000000] printk: console [ttyS0] enabled
+[    0.000000] printk: bootconsole [udbg0] disabled
+[    0.000000] printk: bootconsole [udbg0] disabled
+[    0.000000] serial8250.0: ttyS1 at MMIO 0xffe11c600 (irq = 36, base_baud = 15625000) is a 16550A_FSL64
+[    0.000000] serial8250 serial8250.0: unable to register port at index 2 (IO0 MEMffe11d500 IRQ37): -28
+[    0.000000] serial8250 serial8250.0: unable to register port at index 3 (IO0 MEMffe11d600 IRQ37): -28
+[    0.000000] printk: console [ttyS0] disabled
+[    0.000000] printk: console [ttyS0] enabled
+[    0.000000] ffe11c600.serial: ttyS1 at MMIO 0xffe11c600 (irq = 36, base_baud = 15625000) is a 16550
+[    0.000000] of_serial: probe of ffe11d500.serial failed with error -28
+[    0.000000] of_serial: probe of ffe11d600.serial failed with error -28
+[    0.000000] ePAPR hypervisor byte channel driver
+[    0.000000] loop: module loaded
+[    0.000000] fsl-sata ffe220000.sata: Sata FSL Platform/CSB Driver init
+[    0.000000] scsi host0: sata_fsl
+[    0.000000] ata1: SATA max UDMA/133 irq 68
+[    0.000000] fsl-sata ffe221000.sata: Sata FSL Platform/CSB Driver init
+[    0.000000] scsi host1: sata_fsl
+[    0.000000] ata2: SATA max UDMA/133 irq 69
+[    0.000000] fsl_espi ffe110000.spi: cs=0, init_csmode=0x100008
+[    0.000000] fsl_espi ffe110000.spi: at 0x(ptrval) (irq = 53)
+[    0.000000] libphy: Fixed MDIO Bus: probed
+[    0.000000] dsa-loop fixed-0:1f: DSA mockup driver: 0x1f
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] libphy: Freescale XGMAC MDIO Bus: probed
+[    0.000000] fsl-fman ffe400000.fman: read_dts_node: Failed to get FM0 clock structure
+[    0.000000] fsl-fman: probe of ffe400000.fman failed with error -5
+[    0.000000] fsl_dpaa_mac ffe4e0000.ethernet: fman_bind(/soc@ffe000000/fman@400000) failed
+[    0.000000] fsl_dpaa_mac ffe4e2000.ethernet: fman_bind(/soc@ffe000000/fman@400000) failed
+[    0.000000] fsl_dpaa_mac ffe4e4000.ethernet: fman_bind(/soc@ffe000000/fman@400000) failed
+[    0.000000] fsl_dpaa_mac ffe4e6000.ethernet: fman_bind(/soc@ffe000000/fman@400000) failed
+[    0.000000] fsl_dpaa_mac ffe4e8000.ethernet: fman_bind(/soc@ffe000000/fman@400000) failed
+[    0.000000] mpc-i2c ffe118000.i2c: timeout 1000000 us
+[    0.000000] rtc-rs5c372 0-0032: rs5c372a found, 24hr
+[    0.000000] rtc-rs5c372 0-0032: registered as rtc0
+[    0.000000] mpc-i2c ffe118100.i2c: timeout 1000000 us
+[    0.000000] mpc-i2c ffe119000.i2c: timeout 1000000 us
+[    0.000000] mpc-i2c ffe119100.i2c: timeout 1000000 us
+[    0.000000] booke_wdt: powerpc book-e watchdog driver loaded
+[    0.000000] Freescale(R) MPC85xx EDAC driver, (C) 2006 Montavista Software
+[    0.000000] fsl_mc_err_probe: No ECC DIMMs discovered
+[    0.000000] EDAC PCI0: Giving out device to module MPC85xx_edac controller mpc85xx_pci_err: DEV mpc85xx-pci-edac.0.auto (INTERRUPT)
+[    0.000000] MPC85xx_edac acquired irq 20 for PCI Err
+[    0.000000] MPC85xx_edac PCI err registered
+[    0.000000] EDAC PCI1: Giving out device to module MPC85xx_edac controller mpc85xx_pci_err: DEV mpc85xx-pci-edac.1.auto (INTERRUPT)
+[    0.000000] MPC85xx_edac acquired irq 21 for PCI Err
+[    0.000000] MPC85xx_edac PCI err registered
+[    0.000000] EDAC PCI2: Giving out device to module MPC85xx_edac controller mpc85xx_pci_err: DEV mpc85xx-pci-edac.2.auto (INTERRUPT)
+[    0.000000] MPC85xx_edac acquired irq 22 for PCI Err
+[    0.000000] MPC85xx_edac PCI err registered
+[    0.000000] EDAC PCI3: Giving out device to module MPC85xx_edac controller mpc85xx_pci_err: DEV mpc85xx-pci-edac.3.auto (INTERRUPT)
+[    0.000000] MPC85xx_edac acquired irq 23 for PCI Err
+[    0.000000] MPC85xx_edac PCI err registered
+[    0.000000] sdhci: Secure Digital Host Controller Interface driver
+[    0.000000] sdhci: Copyright(c) Pierre Ossman
+[    0.000000] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.000000] mmc0: SDHCI controller on ffe114000.sdhc [ffe114000.sdhc] using ADMA 64-bit
+[    0.000000] NET: Registered protocol family 10
+[    0.000000] Segment Routing with IPv6
+[    0.000000] NET: Registered protocol family 17
+[    0.000000] 8021q: 802.1Q VLAN Support v1.8
+[    0.000000] drmem: No dynamic reconfiguration memory found
+[    0.000000] dsa-loop fixed-0:1f: DSA mockup driver: 0x1f
+[    0.000000] dsa-loop fixed-0:1f: DSA mockup driver: 0x1f
+[    0.000000] rtc-rs5c372 0-0032: setting system clock to 2021-11-29T15:00:34 UTC (1638198034)
+[    0.000000] mmc0: new high speed SDHC card at address 59b4
+[    0.000000] mmcblk0: mmc0:59b4 SDC   7.34 GiB 
+[    0.000000]  mmcblk0: p1 p2 p3 p4 < p5 p6 p7 >
+[    0.000000] dsa-loop fixed-0:1f: DSA mockup driver: 0x1f
+[    0.000000] ata1: No Device OR PHYRDY change,Hstatus = 0xa0000000
+[    0.000000] ata1: SATA link down (SStatus 10 SControl 300)
+[    0.000000] ata2: No Device OR PHYRDY change,Hstatus = 0x80000000
+[    0.000000] ata2: SATA link down (SStatus 10 SControl 300)
+[    0.000000] Freeing unused kernel memory: 4648K
+[    0.000000] Run /init as init process
+[    0.000000] init: Console is alive
+[    0.000000] init: - watchdog -
+[    0.000000] kmodloader: loading kernel modules from /etc/modules-boot.d/*
+[    0.000000] usbcore: registered new interface driver usbfs
+[    0.000000] usbcore: registered new interface driver hub
+[    0.000000] usbcore: registered new device driver usb
+[    0.000000] Button Hotplug driver version 0.4.1
+[    0.000000] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.000000] ehci-fsl: Freescale EHCI Host controller driver
+[    0.000000] ehci-platform: EHCI generic platform driver
+[    0.000000] fsl-ehci fsl-ehci.0: Freescale On-Chip EHCI Host Controller
+[    0.000000] fsl-ehci fsl-ehci.0: new USB bus registered, assigned bus number 1
+[    0.000000] fsl-ehci fsl-ehci.0: irq 44, io mem 0xffe210000
+[    0.000000] fsl-ehci fsl-ehci.0: USB 2.0 started, EHCI 1.00
+[    0.000000] hub 1-0:1.0: USB hub found
+[    0.000000] hub 1-0:1.0: 1 port detected
+[    0.000000] fsl-ehci fsl-ehci.1: Freescale On-Chip EHCI Host Controller
+[    0.000000] fsl-ehci fsl-ehci.1: new USB bus registered, assigned bus number 2
+[    0.000000] fsl-ehci fsl-ehci.1: irq 45, io mem 0xffe211000
+[    0.000000] dsa-loop fixed-0:1f: DSA mockup driver: 0x1f
+[    0.000000] fsl-ehci fsl-ehci.1: USB 2.0 started, EHCI 1.00
+[    0.000000] hub 2-0:1.0: USB hub found
+[    0.000000] hub 2-0:1.0: 1 port detected
+[    0.000000] dsa-loop fixed-0:1f: DSA mockup driver: 0x1f
+[    0.000000] kmodloader: done loading kernel modules from /etc/modules-boot.d/*
+[    0.000000] dsa-loop fixed-0:1f: DSA mockup driver: 0x1f
+[    0.000000] init: - preinit -
+Press the [f] key and hit [enter] to enter failsafe mode
+Press the [1], [2], [3] or [4] key and hit [enter] to select the debug level
+[    0.000000] usb 1-1: new high-speed USB device number 2 using fsl-ehci
+[    0.000000] random: procd: uninitialized urandom read (4 bytes read)
+[    0.000000] random: fast init done
+[    0.000000] dsa-loop fixed-0:1f: DSA mockup driver: 0x1f
+[    0.000000] procd: - early -
+[    0.000000] procd: - watchdog -
+[    0.000000] procd: - watchdog -
+[    0.000000] procd: - ubus -
+[    0.000000] random: ubusd: uninitialized urandom read (4 bytes read)
+[    0.000000] random: ubusd: uninitialized urandom read (4 bytes read)
+[    0.000000] random: ubusd: uninitialized urandom read (4 bytes read)
+[    0.000000] procd: - init -
+Please press Enter to activate this console.
+[    0.000000] kmodloader: loading kernel modules from /etc/modules.d/*
+[    0.000000] Loading modules backported from Linux version v5.10.68-0-g4d8524048a35
+[    0.000000] Backport generated by backports.git v5.10.68-1-0-ga4f9ba32
+[    0.000000] xt_time: kernel timezone is -0000
+[    0.000000] PPP generic driver version 2.4.2
+[    0.000000] urngd: v1.0.2 started.
+[    0.000000] NET: Registered protocol family 24
+[    0.000000] kmodloader: done loading kernel modules from /etc/modules.d/*
+[    0.000000] random: crng init done
+[    0.000000] random: 6 urandom warning(s) missed due to ratelimiting
+
+
+
+BusyBox v1.33.1 (2021-11-27 04:09:32 UTC) built-in shell (ash)
+
+  _______                     ________        __
+ |       0.000000-----.-----.|  |  |  |.----.|  |_
+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+ |_______||   __|_____|__|__||________||__|  |____|
+          |__| W I R E L E S S   F R E E D O M
+ -----------------------------------------------------
+ OpenWrt 21.02-SNAPSHOT, r16390+1-0e0192098a
+ -----------------------------------------------------
+=== WARNING! =====================================
+There is no root password defined on this device!
+Use the "passwd" command to set up a new password
+in order to prevent unauthorized SSH logins.
+--------------------------------------------------
+root@OpenWrt:/# 
