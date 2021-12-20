@@ -1,0 +1,48 @@
+--- a/src/setjmp/powerpc64/longjmp.s
++++ b/src/setjmp/powerpc64/longjmp.s
+@@ -56,21 +56,6 @@ longjmp:
+	lfd 30, 38*8(3)
+	lfd 31, 39*8(3)
+ 
+-	# 6) restore vector registers v20-v31
+-	addi 3, 3, 40*8
+-	lvx 20, 0, 3 ; addi 3, 3, 16
+-	lvx 21, 0, 3 ; addi 3, 3, 16
+-	lvx 22, 0, 3 ; addi 3, 3, 16
+-	lvx 23, 0, 3 ; addi 3, 3, 16
+-	lvx 24, 0, 3 ; addi 3, 3, 16
+-	lvx 25, 0, 3 ; addi 3, 3, 16
+-	lvx 26, 0, 3 ; addi 3, 3, 16
+-	lvx 27, 0, 3 ; addi 3, 3, 16
+-	lvx 28, 0, 3 ; addi 3, 3, 16
+-	lvx 29, 0, 3 ; addi 3, 3, 16
+-	lvx 30, 0, 3 ; addi 3, 3, 16
+-	lvx 31, 0, 3
+-
+	# 7) return r4 ? r4 : 1
+	mr    3,   4
+	cmpwi cr7, 4, 0
+--- a/src/setjmp/powerpc64/setjmp.s
++++ b/src/setjmp/powerpc64/setjmp.s
+@@ -69,21 +69,6 @@ __setjmp_toc:
+	stfd 30, 38*8(3)
+	stfd 31, 39*8(3)
+ 
+-	# 5) store vector registers v20-v31
+-	addi  3, 3, 40*8
+-	stvx 20, 0, 3 ; addi 3, 3, 16
+-	stvx 21, 0, 3 ; addi 3, 3, 16
+-	stvx 22, 0, 3 ; addi 3, 3, 16
+-	stvx 23, 0, 3 ; addi 3, 3, 16
+-	stvx 24, 0, 3 ; addi 3, 3, 16
+-	stvx 25, 0, 3 ; addi 3, 3, 16
+-	stvx 26, 0, 3 ; addi 3, 3, 16
+-	stvx 27, 0, 3 ; addi 3, 3, 16
+-	stvx 28, 0, 3 ; addi 3, 3, 16
+-	stvx 29, 0, 3 ; addi 3, 3, 16
+-	stvx 30, 0, 3 ; addi 3, 3, 16
+-	stvx 31, 0, 3
+-
+	# 6) return 0
+	li 3, 0
+	blr
