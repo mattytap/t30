@@ -3,15 +3,18 @@
 / {
 	#address-cells = <0x02>;
 	#size-cells = <0x02>;
-	compatible = "watchguard,firebox-t30", "fsl,T1020RDB";
+	compatible = "watchguard,t30-w";
 	interrupt-parent = <0x01>;
-	model = "WatchGuard Firebox T30";
-//	model = "fsl,P1011BOREN";
+	model = "watchguard,t30-w";
 
 	aliases {
 		ethernet0 = "/soc@ffe00000/ethernet@b0000";
 		ethernet1 = "/soc@ffe00000/ethernet@b1000";
 		ethernet2 = "/soc@ffe00000/ethernet@b2000";
+		led-boot = "/leds/attn_orange";
+		led-failsafe = "/leds/status_red";
+		led-running = "/leds/attn_orange";
+		led-upgrade = "/leds/status_red";
 		pci0 = "/pcie@ffe09000";
 		pci1 = "/pcie@ffe0a000";
 		serial0 = "/soc@ffe00000/serial@4500";
@@ -46,6 +49,42 @@
 			device_type = "cpu";
 			next-level-cache = <0x02>;
 			reg = <0x01>;
+		};
+	};
+
+	leds {
+		compatible = "gpio-leds";
+
+		attn_orange {
+			gpios = <0x0a 0x02 0x01>;
+			label = "orange:attn";
+		};
+
+		failover_green {
+			gpios = <0x0a 0x07 0x01>;
+			label = "green:failover";
+		};
+
+		mode_green {
+			gpios = <0x0a 0x04 0x01>;
+			label = "green:mode";
+		};
+
+		status_red {
+			gpios = <0x0a 0x03 0x01>;
+			label = "red:status";
+		};
+
+		wap_green {
+			default-state = "keep";
+			gpios = <0x0a 0x05 0x00>;
+			label = "green:wap";
+		};
+
+		wap_orange {
+			default-state = "keep";
+			gpios = <0x0a 0x06 0x00>;
+			label = "orange:wap";
 		};
 	};
 
@@ -498,7 +537,6 @@
 			reg = <0x25000 0x1000 0xb1030 0x04>;
 
 			tbi-phy@10 {
-				device_type = "tbi-phy";
 				reg = <0x10>;
 			};
 		};
@@ -520,12 +558,6 @@
 			compatible = "fsl,mpic-v3.1-msgr";
 			interrupts = <0xb0 0x02 0x00 0x00 0xb1 0x02 0x00 0x00 0xb2 0x02 0x00 0x00 0xb3 0x02 0x00 0x00>;
 			reg = <0x41400 0x200>;
-		};
-
-		message@42400 {
-			compatible = "fsl,mpic-msg";
-			interrupts = <0xb4 0x02 0x00 0x00 0xb5 0x02 0x00 0x00 0xb6 0x02 0x00 0x00 0xb7 0x02 0x00 0x00>;
-			reg = <0x42400 0x200>;
 		};
 
 		msi@41600 {
@@ -551,6 +583,9 @@
 		sdhc@2e000 {
 			clock-frequency = <0x00>;
 			compatible = "fsl,p1020-esdhc\0fsl,esdhc";
+			fsl,sdhci-adjust-timeout;
+			fsl,sdhci-ahb2mag-irq-bypass;
+			fsl,sdhci-dma-broken;
 			interrupt-parent = <0x01>;
 			interrupts = <0x48 0x02 0x00 0x00>;
 			reg = <0x2e000 0x1000>;
@@ -595,7 +630,6 @@
 
 				partition@spi_mtd_0 {
 					label = "spi_mtd_0";
-					read-only;
 					reg = <0x00 0x8000>;
 				};
 			};
@@ -633,9 +667,7 @@
 			#address-cells = <0x01>;
 			#size-cells = <0x00>;
 			compatible = "fsl-usb2-dr-v1.6\0fsl-usb2-dr";
-			dr_mode = "host";
 			interrupts = <0x2e 0x02 0x00 0x00>;
-			phy_type = "ulpi";
 			reg = <0x23000 0x1000>;
 		};
 	};
