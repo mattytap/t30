@@ -251,7 +251,6 @@
 			fsl,num_tx_queues = <0x08>;
 			local-mac-address = [00 00 00 00 00 00];
 			model = "eTSEC";
-			linux,phandle = <0x09>;
 			phandle = <0x09>;
 			phy-connection-type = "rgmii-id";
 			ranges;
