@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 
-#include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/input/input.h>
+//#include <dt-bindings/gpio/gpio.h>
+//#include <dt-bindings/input/input.h>
 
 /include/ "p1020si-pre.dtsi"
 / {
@@ -14,10 +14,10 @@
 		ethernet0 = &enet0;
 		pci0 = &pci0;
 		pci1 = &pci1;
-		led-boot = &attn_orange;
-		led-failsafe = &status_red;
-		led-running = &attn_orange;
-		led-upgrade = &status_red;
+		led-boot = "/leds/attn_orange";
+		led-failsafe = "/leds/status_red";
+		led-running = "/leds/attn_orange";
+		led-upgrade = "/leds/status_red";
 	};
 
 	memory {
@@ -293,36 +293,36 @@
 	leds {
 		compatible = "gpio-leds";
 
-		attn_orange: attn_orange {
-			gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+		attn_orange {
+			gpios = <0x0a 0x02 0x01>;
 			label = "orange:attn";
 		};
 
-		status_red: status_red {
-			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
-			label = "red:status";
+		failover_green {
+			gpios = <0x0a 0x07 0x01>;
+			label = "green:failover";
 		};
 
-		mode_green: mode_green {
-			gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
+		mode_green {
+			gpios = <0x0a 0x04 0x01>;
 			label = "green:mode";
 		};
 
-		wap_green: wap_green {
-			gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
+		status_red {
+			gpios = <0x0a 0x03 0x01>;
+			label = "red:status";
+		};
+
+		wap_green {
+			default-state = "keep";
+			gpios = <0x0a 0x05 0x00>;
 			label = "green:wap";
-			default-state = "keep";
 		};
 
-		wap_orange: wap_orange {
-			gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+		wap_orange {
+			default-state = "keep";
+			gpios = <0x0a 0x06 0x00>;
 			label = "orange:wap";
-			default-state = "keep";
-		};
-
-		failover_green: failover_green {
-			gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
-			label = "green:failover";
 		};
 	};
 
@@ -393,4 +393,4 @@
 	};
 };
 
-/include/ "fsl/p1020si-post.dtsi"
+/include/ "p1020si-post.dtsi"

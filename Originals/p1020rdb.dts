@@ -15,7 +15,7 @@
 	};
 
 	board_lbc: lbc: localbus@ffe05000 {
-		reg = <0 0xffe05000 0 0x1000>;
+		reg = <0x0 0xffe05000 0x0 0x1000>;
 
 		/* NOR, NAND Flashes and Vitesse 5 port L2 switch */
 		ranges = <0x0 0x0 0x0 0xef000000 0x01000000

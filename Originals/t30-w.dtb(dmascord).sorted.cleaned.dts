@@ -3,14 +3,18 @@
 / {
 	#address-cells = <0x02>;
 	#size-cells = <0x02>;
-	compatible = "watchguard,firebox-t30", "fsl,P1020RDB";
+	compatible = "watchguard,t30-w";
 	interrupt-parent = <0x01>;
-	model = "WatchGuard Firebox T30";
+	model = "watchguard,t30-w";
 
 	aliases {
 		ethernet0 = "/soc@ffe00000/ethernet@b0000";
 		ethernet1 = "/soc@ffe00000/ethernet@b1000";
 		ethernet2 = "/soc@ffe00000/ethernet@b2000";
+		led-boot = "/leds/attn_orange";
+		led-failsafe = "/leds/status_red";
+		led-running = "/leds/attn_orange";
+		led-upgrade = "/leds/status_red";
 		pci0 = "/pcie@ffe09000";
 		pci1 = "/pcie@ffe0a000";
 		serial0 = "/soc@ffe00000/serial@4500";
@@ -48,15 +52,52 @@
 		};
 	};
 
-	board_lbc: lbc: localbus@ffe05000 {
+	leds {
+		compatible = "gpio-leds";
+
+		attn_orange {
+			gpios = <0x0a 0x02 0x01>;
+			label = "orange:attn";
+		};
+
+		failover_green {
+			gpios = <0x0a 0x07 0x01>;
+			label = "green:failover";
+		};
+
+		mode_green {
+			gpios = <0x0a 0x04 0x01>;
+			label = "green:mode";
+		};
+
+		status_red {
+			gpios = <0x0a 0x03 0x01>;
+			label = "red:status";
+		};
+
+		wap_green {
+			default-state = "keep";
+			gpios = <0x0a 0x05 0x00>;
+			label = "green:wap";
+		};
+
+		wap_orange {
+			default-state = "keep";
+			gpios = <0x0a 0x06 0x00>;
+			label = "orange:wap";
+		};
+	};
+
+	localbus@ffe05000 {
 		#address-cells = <0x02>;
 		#size-cells = <0x01>;
-		compatible = "fsl,p1020-elbc", "fsl,elbc", "simple-bus";
-		interrupts = <0x13 0x02 0x00 0x00>, <0x10 0x02 0x00 0x00>;
+		compatible = "fsl,p1020-elbc\0fsl,elbc\0simple-bus";
+		interrupt-parent = <0x01>;
+		interrupts = <0x13 0x02 0x00 0x00 0x10 0x02 0x00 0x00>;
 		ranges = <0x00 0x00 0x00 0xefc00000 0x100000>;
 		reg = <0x00 0xffe05000 0x00 0x1000>;
 
-		nor@0 {
+		flash@0 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			bank-width = <0x02>;
@@ -74,6 +115,21 @@
 					reg = <0x00 0x20000>;
 				};
 
+				partition@20000 {
+					label = "nor-cfg1";
+					reg = <0x20000 0x10000>;
+				};
+
+				partition@30000 {
+					label = "nor-mfg";
+					reg = <0x30000 0x20000>;
+				};
+
+				partition@50000 {
+					label = "nor-bootopt";
+					reg = <0x50000 0xc0000>;
+				};
+
 				partition@110000 {
 					label = "nor-extra1";
 					reg = <0x110000 0xc0000>;
@@ -84,19 +140,9 @@
 					reg = <0x1d0000 0xc0000>;
 				};
 
-				partition@20000 {
-					label = "nor-cfg1";
-					reg = <0x20000 0x10000>;
-				};
-
 				partition@290000 {
 					label = "nor-backup";
 					reg = <0x290000 0xe0000>;
-				};
-
-				partition@30000 {
-					label = "nor-mfg";
-					reg = <0x30000 0x20000>;
 				};
 
 				partition@370000 {
@@ -106,13 +152,7 @@
 
 				partition@380000 {
 					label = "nor-uboot";
-					read-only;
 					reg = <0x380000 0x80000>;
-				};
-
-				partition@50000 {
-					label = "nor-bootopt";
-					reg = <0x50000 0xc0000>;
 				};
 			};
 		};
@@ -122,13 +162,18 @@
 		device_type = "memory";
 	};
 
-	pci0: pcie@ffe09000 {
+	pcie@ffe09000 {
 		#address-cells = <0x03>;
+		#interrupt-cells = <0x01>;
 		#size-cells = <0x02>;
 		bus-range = <0x00 0xff>;
+		cell-index = <0x01>;
 		clock-frequency = <0x1fca055>;
 		compatible = "fsl,mpc8548-pcie";
 		device_type = "pci";
+		interrupt-map = <0x00 0x00 0x00 0x01 0x02 0x04 0x01 0x00 0x00 0x00 0x02 0x02 0x05 0x01 0x00 0x00 0x00 0x03 0x02 0x06 0x01 0x00 0x00 0x00 0x04 0x02 0x07 0x01>;
+		interrupt-map-mask = <0xf800 0x00 0x00 0x07>;
+		interrupt-parent = <0x01>;
 		interrupts = <0x10 0x02 0x00 0x00>;
 		ranges = <0x2000000 0x00 0xa0000000 0x00 0xa0000000 0x00 0x20000000 0x1000000 0x00 0x00 0x00 0xffc10000 0x00 0x10000>;
 		reg = <0x00 0xffe09000 0x00 0x1000>;
@@ -146,13 +191,18 @@
 		};
 	};
 
-	pci1: pcie@ffe0a000 {
+	pcie@ffe0a000 {
 		#address-cells = <0x03>;
+		#interrupt-cells = <0x01>;
 		#size-cells = <0x02>;
 		bus-range = <0x00 0xff>;
+		cell-index = <0x02>;
 		clock-frequency = <0x1fca055>;
 		compatible = "fsl,mpc8548-pcie";
 		device_type = "pci";
+		interrupt-map = <0x00 0x00 0x00 0x01 0x02 0x00 0x01 0x00 0x00 0x00 0x02 0x02 0x01 0x01 0x00 0x00 0x00 0x03 0x02 0x02 0x01 0x00 0x00 0x00 0x04 0x02 0x03 0x01>;
+		interrupt-map-mask = <0xf800 0x00 0x00 0x07>;
+		interrupt-parent = <0x01>;
 		interrupts = <0x10 0x02 0x00 0x00>;
 		ranges = <0x2000000 0x00 0x80000000 0x00 0x80000000 0x00 0x20000000 0x1000000 0x00 0x00 0x00 0xffc00000 0x00 0x10000>;
 		reg = <0x00 0xffe0a000 0x00 0x1000>;
@@ -170,16 +220,16 @@
 		};
 	};
 
-	board_soc: soc: soc@ffe00000 {
+	soc@ffe00000 {
 		#address-cells = <0x01>;
 		#size-cells = <0x01>;
 		bus-frequency = <0x00>;
-		compatible = "fsl,p1020-immr", "simple-bus";
+		compatible = "fsl,p1020-immr\0simple-bus";
 		device_type = "soc";
 		ranges = <0x00 0x00 0xffe00000 0x100000>;
 
 		crypto@30000 {
-			compatible = "fsl,sec3.3", "fsl,sec3.1", "fsl,sec3.0", "fsl,sec2.4", "fsl,sec2.2", "fsl,sec2.1", "fsl,sec2.0";
+			compatible = "fsl,sec3.3\0fsl,sec3.1\0fsl,sec3.0\0fsl,sec2.4\0fsl,sec2.2\0fsl,sec2.1\0fsl,sec2.0";
 			fsl,channel-fifo-len = <0x18>;
 			fsl,descriptor-types-mask = <0x3a30abf>;
 			fsl,exec-units-mask = <0x97c>;
@@ -232,12 +282,12 @@
 		};
 
 		ecm@1000 {
-			compatible = "fsl,p1020-ecm", "fsl,ecm";
+			compatible = "fsl,p1020-ecm\0fsl,ecm";
 			interrupts = <0x10 0x02 0x00 0x00>;
 			reg = <0x1000 0x1000>;
 		};
 
-		enet0_grp2: enet0: ethernet@b0000 {
+		ethernet@b0000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			compatible = "fsl,etsec2";
@@ -271,7 +321,7 @@
 			};
 		};
 
-		enet1_grp2: enet1: ethernet@b1000 {
+		ethernet@b1000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			compatible = "fsl,etsec2";
@@ -299,7 +349,7 @@
 			};
 		};
 
-		enet2_grp2: enet2: ethernet@b2000 {
+		ethernet@b2000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			compatible = "fsl,etsec2";
@@ -333,21 +383,22 @@
 			reg = <0xe0000 0x1000>;
 		};
 
-		gpio0: gpio-controller@f000 {
-			#gpio-cells = <0x02>;
-			compatible = "fsl,mpc8572-gpio", "fsl,pq3-gpio";
-			gpio-controller;
-			interrupts = <0x2f 0x02 0x00 0x00>;
-			reg = <0xf000 0x100>;
-		};
-
-		gpio1: gpio-controller@fc00 {
+		gpio-controller@fc00 {
 			#gpio-cells = <0x02>;
 			compatible = "fsl,pq3-gpio";
 			gpio-controller;
 			interrupts = <0x2f 0x02 0x00 0x00>;
 			reg = <0xfc00 0x100>;
-			status = "disabled";
+		};
+
+		gpio@f000 {
+			#gpio-cells = <0x02>;
+			compatible = "fsl,mpc8572-gpio\0fsl,pq3-gpio";
+			gpio-controller;
+			interrupt-parent = <0x01>;
+			interrupts = <0x2f 0x02>;
+			phandle = <0x0a>;
+			reg = <0xf000 0x1000>;
 		};
 
 		i2c@3000 {
@@ -380,7 +431,7 @@
 			};
 		};
 
-		L2: l2-cache-controller@20000 {
+		l2-cache-controller@20000 {
 			cache-line-size = <0x20>;
 			cache-size = <0x40000>;
 			compatible = "fsl,p1020-l2-cache-controller";
@@ -395,7 +446,7 @@
 			compatible = "fsl,etsec2-mdio";
 			reg = <0x24000 0x1000 0xb0030 0x04>;
 
-			switch0: tbi0: tbi-phy@10 {
+			tbi-phy@16 {
 				compatible = "marvell,mv88e6085";
 				dsa,member = <0x00 0x00>;
 				phandle = <0x03>;
@@ -405,31 +456,31 @@
 					#address-cells = <0x01>;
 					#size-cells = <0x00>;
 
-					switch0phy0: switch0phy0@0 {
+					switch0phy0@0 {
 						interrupt-parent = <0x03>;
 						phandle = <0x04>;
 						reg = <0x00>;
 					};
 
-					switch0phy1: switch0phy1@1 {
+					switch0phy1@1 {
 						interrupt-parent = <0x03>;
 						phandle = <0x05>;
 						reg = <0x01>;
 					};
 
-					switch0phy2: switch0phy2@2 {
+					switch0phy2@2 {
 						interrupt-parent = <0x03>;
 						phandle = <0x06>;
 						reg = <0x02>;
 					};
 
-					switch0phy3: switch0phy3@3 {
+					switch0phy3@3 {
 						interrupt-parent = <0x03>;
 						phandle = <0x07>;
 						reg = <0x03>;
 					};
 
-					switch0phy4: switch0phy4@4 {
+					switch0phy4@4 {
 						interrupt-parent = <0x03>;
 						phandle = <0x08>;
 						reg = <0x04>;
@@ -470,7 +521,7 @@
 						reg = <0x04>;
 					};
 
-					switch0port6: port@6 {
+					port@6 {
 						ethernet = <0x09>;
 						label = "cpu";
 						phy-mode = "rgmii-id";
@@ -491,8 +542,7 @@
 			compatible = "fsl,etsec2-tbi";
 			reg = <0x25000 0x1000 0xb1030 0x04>;
 
-			tbi1: tbi-phy@10 {
-				device_type = "tbi-phy";
+			tbi-phy@16 {
 				reg = <0x10>;
 			};
 		};
@@ -516,12 +566,6 @@
 			reg = <0x41400 0x200>;
 		};
 
-		message@42400 {
-			compatible = "fsl,mpic-msg";
-			interrupts = <0xb4 0x02 0x00 0x00 0xb5 0x02 0x00 0x00 0xb6 0x02 0x00 0x00 0xb7 0x02 0x00 0x00>;
-			reg = <0x42400 0x200>;
-		};
-
 		msi@41600 {
 			compatible = "fsl,mpic-msi";
 			interrupts = <0xe0 0x00 0x00 0x00 0xe1 0x00 0x00 0x00 0xe2 0x00 0x00 0x00 0xe3 0x00 0x00 0x00 0xe4 0x00 0x00 0x00 0xe5 0x00 0x00 0x00 0xe6 0x00 0x00 0x00 0xe7 0x00 0x00 0x00>;
@@ -529,7 +573,7 @@
 			reg = <0x41600 0x80>;
 		};
 
-		mpic: pic@40000 {
+		pic@40000 {
 			#address-cells = <0x00>;
 			#interrupt-cells = <0x04>;
 			big-endian;
@@ -544,7 +588,7 @@
 
 		sdhc@2e000 {
 			clock-frequency = <0x00>;
-			compatible = "fsl,p1020-esdhc", "fsl,esdhc";
+			compatible = "fsl,p1020-esdhc\0fsl,esdhc";
 			fsl,sdhci-adjust-timeout;
 			fsl,sdhci-ahb2mag-irq-bypass;
 			fsl,sdhci-dma-broken;
@@ -554,19 +598,19 @@
 			sdhci,auto-cmd12;
 		};
 
-		serial0: serial@4500 {
+		serial@4500 {
 			cell-index = <0x00>;
 			clock-frequency = <0x00>;
-			compatible = "fsl,ns16550", "ns16550";
+			compatible = "fsl,ns16550\0ns16550";
 			device_type = "serial";
 			interrupts = <0x2a 0x02 0x00 0x00>;
 			reg = <0x4500 0x100>;
 		};
 
-		serial1: serial@4600 {
+		serial@4600 {
 			cell-index = <0x01>;
 			clock-frequency = <0x00>;
-			compatible = "fsl,ns16550", "ns16550";
+			compatible = "fsl,ns16550\0ns16550";
 			device_type = "serial";
 			interrupts = <0x2a 0x02 0x00 0x00>;
 			reg = <0x4600 0x100>;
@@ -575,22 +619,23 @@
 		spi@7000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x00>;
+			cell-index = <0x00>;
 			compatible = "fsl,mpc8536-espi";
 			fsl,espi-num-chipselects = <0x04>;
+			interrupt-parent = <0x01>;
 			interrupts = <0x3b 0x02 0x00 0x00>;
 			reg = <0x7000 0x1000>;
 
 			flash@0 {
 				#address-cells = <0x01>;
 				#size-cells = <0x01>;
-				compatible = "everspin,mr25h256", "jedec,spi-nor";
+				compatible = "everspin,mr25h256\0jedec,spi-nor";
 				m25p,fast-read;
 				reg = <0x00>;
 				spi-max-frequency = <0x2625a00>;
 
 				partition@spi_mtd_0 {
 					label = "spi_mtd_0";
-					read-only;
 					reg = <0x00 0x8000>;
 				};
 			};
@@ -617,7 +662,7 @@
 		usb@22000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x00>;
-			compatible = "fsl-usb2-dr-v1.6", "fsl-usb2-dr";
+			compatible = "fsl-usb2-dr-v1.6\0fsl-usb2-dr";
 			dr_mode = "host";
 			interrupts = <0x1c 0x02 0x00 0x00>;
 			phy_type = "ulpi";
@@ -627,10 +672,8 @@
 		usb@23000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x00>;
-			compatible = "fsl-usb2-dr-v1.6", "fsl-usb2-dr";
-			dr_mode = "host";
+			compatible = "fsl-usb2-dr-v1.6\0fsl-usb2-dr";
 			interrupts = <0x2e 0x02 0x00 0x00>;
-			phy_type = "ulpi";
 			reg = <0x23000 0x1000>;
 		};
 	};
