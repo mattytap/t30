@@ -1,5 +1,5 @@
 /dts-v1/;
-
+// MARVELL SWITCH NOT WORKING - learn why and then delete
 / {
 	#address-cells = <0x02>;
 	#size-cells = <0x02>;
@@ -17,6 +17,20 @@
 	cpus {
 		#address-cells = <0x01>;
 		#size-cells = <0x00>;
+		mmu-type = "power-embedded";
+		power-isa-atb;
+		power-isa-b;
+		power-isa-cs;
+		power-isa-e;
+		power-isa-e.le;
+		power-isa-e.pm;
+		power-isa-ecl;
+		power-isa-mmc;
+		power-isa-sp;
+		power-isa-sp.fd;
+		power-isa-sp.fs;
+		power-isa-sp.fv;
+		power-isa-version = "2.03";
 
 		PowerPC,P1011@0 {
 			device_type = "cpu";
@@ -34,7 +48,7 @@
 		ranges = <0x00 0x00 0x00 0xefc00000 0x100000>;
 		reg = <0x00 0xffe05000 0x00 0x1000>;
 
-		nor@0,0 {
+		nor@0 {
 			#address-cells = <0x01>;
 			#size-cells = <0x01>;
 			bank-width = <0x02>;
@@ -54,6 +68,7 @@
 
 			partition@380000 {
 				label = "uboot";
+				read-only;
 				reg = <0x380000 0x80000>;
 			};
 		};
@@ -195,12 +210,16 @@
 			compatible = "fsl,etsec2";
 			device_type = "network";
 			fixed-link = <0x01 0x01 0x3e8 0x00 0x00>;
+			fsl,magic-packet;
 			fsl,num_rx_queues = <0x08>;
 			fsl,num_tx_queues = <0x08>;
 			interrupt-parent = <0x02>;
 			local-mac-address = [00 00 00 00 00 00];
 			model = "eTSEC";
+			linux,phandle = <0x03>;
+			phandle = <0x03>;
 			phy-connection-type = "rgmii-id";
+			ranges;
 
 			queue-group@0 {
 				#address-cells = <0x01>;
@@ -296,6 +315,54 @@
 				interrupts = <0x02 0x01>;
 				reg = <0x00>;
 			};
+
+			switch@10 {
+				compatible = "marvell,mv88e6085";
+				dsa,member = <0x00 0x00>;
+				reg = <0x10>;
+
+				ports {
+					#address-cells = <0x01>;
+					#size-cells = <0x00>;
+
+					port@0 {
+						label = "wan0";
+						reg = <0x00>;
+					};
+
+					port@1 {
+						label = "lan1";
+						reg = <0x01>;
+					};
+
+					port@2 {
+						label = "lan2";
+						reg = <0x02>;
+					};
+
+					port@3 {
+						label = "lan3";
+						reg = <0x03>;
+					};
+
+					port@4 {
+						label = "lan4";
+						reg = <0x04>;
+					};
+
+					port@5 {
+						ethernet = <0x03>;
+						label = "cpu";
+						phy-mode = "rgmii-id";
+						reg = <0x05>;
+
+						fixed-link {
+							full-duplex;
+							speed = <0x3e8>;
+						};
+					};
+				};
+			};
 		};
 
 		mdio@25000 {
@@ -318,14 +385,14 @@
 		};
 
 		message@41400 {
-			compatible = "fsl,p1020-msg", "fsl,mpic-msg";
+			compatible = "fsl,p1020-msg", "fsl,mpic-msg", "fsl,mpic-v3.1-msgr";
 			interrupt-parent = <0x02>;
 			interrupts = <0xb0 0x02 0xb1 0x02 0xb2 0x02 0xb3 0x02>;
 			reg = <0x41400 0x200>;
 		};
 
 		message@42400 {
-			compatible = "fsl,p1020-msg", "fsl,mpic-msg";
+			compatible = "fsl,p1020-msg", "fsl,mpic-msg", "fsl,mpic-v3.1-msgr";
 			interrupt-parent = <0x02>;
 			interrupts = <0xb4 0x02 0xb5 0x02 0xb6 0x02 0xb7 0x02>;
 			reg = <0x42400 0x200>;
@@ -342,12 +409,15 @@
 		pic@40000 {
 			#address-cells = <0x00>;
 			#interrupt-cells = <0x02>;
-			compatible = "chrp,open-pic";
+			big-endian;
+			compatible = "chrp,open-pic", "fsl,mpic";
 			device_type = "open-pic";
 			interrupt-controller;
+			last-interrupt-source = <0xff>;
 			linux,phandle = <0x02>;
 			phandle = <0x02>;
 			reg = <0x40000 0x40000>;
+			single-cpu-affinity;
 		};
 
 		sdhci@2e000 {
@@ -362,7 +432,7 @@
 		serial@4500 {
 			cell-index = <0x00>;
 			clock-frequency = <0x00>;
-			compatible = "ns16550";
+			compatible = "fsl,ns16550", "ns16550";
 			device_type = "serial";
 			interrupt-parent = <0x02>;
 			interrupts = <0x2a 0x02>;
@@ -372,7 +442,7 @@
 		serial@4600 {
 			cell-index = <0x01>;
 			clock-frequency = <0x00>;
-			compatible = "ns16550";
+			compatible = "fsl,ns16550", "ns16550";
 			device_type = "serial";
 			interrupt-parent = <0x02>;
 			interrupts = <0x2a 0x02>;
@@ -387,47 +457,44 @@
 			fsl,espi-num-chipselects = <0x04>;
 			interrupt-parent = <0x02>;
 			interrupts = <0x3b 0x02>;
-			mode = "cpu";
 			reg = <0x7000 0x1000>;
 
 			fsl_m25p80@0 {
 				#address-cells = <0x01>;
 				#compatible = "fsl,espi-flash";
 				#size-cells = <0x01>;
-				compatible = "fsl,mx25l25635f";
-				linux,modalias = "fsl_m25p80";
-				modal = "mx25l25635f";
-				mode = <0x00>;
+				compatible = "spansion,mr25h256", "jedec,spi-nor";
 				reg = <0x00>;
-				spi-max-frequency = <0x2faf080>;
+				spi-max-frequency = <0x2625a00>;
 
 				partition@spi_mtd_0 {
 					label = "spi_mtd_0";
-					reg = <0x00 0x800000>;
+					read-only;
+					reg = <0x00 0x8000>;
 				};
-
-				partition@spi_mtd_1 {
-					label = "spi_mtd_1";
-					reg = <0x800000 0x1800000>;
-				};
-			};
-
-			legerity@0 {
-				compatible = "zarlink,le88266";
-				mode = <0x01>;
-				reg = <0x01>;
-				spi-max-frequency = <0x7a120>;
 			};
 		};
 
 		usb@22000 {
 			#address-cells = <0x01>;
 			#size-cells = <0x00>;
-			compatible = "fsl-usb2-dr";
+			compatible = "fsl-usb2-dr-v1.6", "fsl-usb2-dr";
+			dr_mode = "host";
 			interrupt-parent = <0x02>;
 			interrupts = <0x1c 0x02>;
 			phy_type = "ulpi";
 			reg = <0x22000 0x1000>;
+		};
+
+		usb@23000 {
+			#address-cells = <0x01>;
+			#size-cells = <0x00>;
+			compatible = "fsl-usb2-dr-v1.6", "fsl-usb2-dr";
+			dr_mode = "host";
+			interrupt-parent = <0x02>;
+			interrupts = <0x2e 0x02>;
+			phy_type = "ulpi";
+			reg = <0x23000 0x1000>;
 		};
 	};
 };

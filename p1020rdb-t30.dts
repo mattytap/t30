@@ -9,6 +9,9 @@
  * Copyright 2009-2011 Freescale Semiconductor Inc.
  */
 
+// to be consistent with other fsl boards this file belongs in the dts/fsl subdirectory. 
+// The image Makefile should include the line 'DEVICE_DTS_DIR := $(DTS_DIR)/fsl'
+
 /include/ "p1020si-pre.dtsi"
 / {
 	model = "WatchGuard Firebox T30";
@@ -116,5 +119,7 @@
 	};
 };
 
+// forked off and replaces p1020rdb.dtsi
 /include/ "p1020rdb-t30.dtsi"
+
 /include/ "p1020si-post.dtsi"
