@@ -23,10 +23,6 @@
 		ethernet0 = &enet0;
 		pci0 = &pci0;
 		pci1 = &pci1;
-		led-boot = &attn_orange;
-		led-failsafe = &status_red;
-		led-running = &attn_orange;
-		led-upgrade = &status_red;
 	};
 
 	memory {
@@ -48,42 +44,6 @@
 
 	board_soc: soc: soc@ffe00000 {
 		ranges = <0x0 0x0 0xffe00000 0x100000>;
-	};
-
-	leds {
-		compatible = "gpio-leds";
-
-		attn_orange: attn_orange {
-			gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
-			label = "orange:attn";
-		};
-
-		status_red: status_red {
-			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
-			label = "red:status";
-		};
-
-		mode_green: mode_green {
-			gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
-			label = "green:mode";
-		};
-
-		wap_green: wap_green {
-			gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
-			label = "green:wap";
-			default-state = "keep";
-		};
-
-		wap_orange: wap_orange {
-			gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
-			label = "orange:wap";
-			default-state = "keep";
-		};
-
-		failover_green: failover_green {
-			gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
-			label = "green:failover";
-		};
 	};
 
 	/* strictly only needed for T30-W */
