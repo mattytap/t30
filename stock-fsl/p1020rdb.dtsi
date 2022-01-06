@@ -126,6 +126,7 @@
 			reg = <0x01100000 0x00f00000>;
 			label = "NAND (RW) Writable User area";
 		};
+////
 	};
 
 	L2switch@2,0 {
@@ -135,7 +136,7 @@
 		reg = <0x2 0x0 0x20000>;
 	};
 };
-
+//
 &board_soc {
 	i2c@3000 {
 		rtc@68 {

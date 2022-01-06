@@ -6,11 +6,15 @@
  * based off:
  * 
  * P1020 RDB Device Tree Source
+ *
  * Copyright 2009-2011 Freescale Semiconductor Inc.
  */
 
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+
 // to be consistent with other fsl boards this file belongs in the dts/fsl subdirectory. 
-// The image Makefile should include the line 'DEVICE_DTS_DIR := $(DTS_DIR)/fsl'
+// If put in fsl then the image Makefile needs to include the line 'DEVICE_DTS_DIR := $(DTS_DIR)/fsl'
 
 /include/ "p1020si-pre.dtsi"
 / {
@@ -23,6 +27,10 @@
 		ethernet0 = &enet0;
 		pci0 = &pci0;
 		pci1 = &pci1;
+		led-boot = &attn_orange;
+		led-failsafe = &status_red;
+		led-running = &attn_orange;
+		led-upgrade = &status_red;
 	};
 
 	memory {
@@ -33,10 +41,10 @@
 		reg = <0x0 0xffe05000 0x0 0x1000>;
 
 		/* NOR, NAND Flashes and Vitesse 5 port L2 switch */
-//		** Removed - not used on T30 **
-//		ranges = <0x0 0x0 0x0 0xef000000 0x01000000
-//			  0x1 0x0 0x0 0xffa00000 0x00040000
-//			  0x2 0x0 0x0 0xffb00000 0x00020000>;
+		// ** Removed - not used on T30 **
+		// ranges = <0x0 0x0 0x0 0xef000000 0x01000000
+		//	  0x1 0x0 0x0 0xffa00000 0x00040000
+		//	  0x2 0x0 0x0 0xffb00000 0x00020000>;
 
 		/* NOR Flash */
 		ranges = <0x0 0x0 0x0 0xefc00000 0x100000>;
@@ -44,9 +52,12 @@
 
 	board_soc: soc: soc@ffe00000 {
 		ranges = <0x0 0x0 0xffe00000 0x100000>;
+
+		gpio0: gpio-controller@f000 {
+		};
+
 	};
 
-	/* strictly only needed for T30-W */
 	pci0: pcie@ffe09000 {
 		ranges = <0x2000000 0x0 0xa0000000 0 0xa0000000 0x0 0x20000000
 			  0x1000000 0x0 0x00000000 0 0xffc10000 0x0 0x10000>;
@@ -62,7 +73,6 @@
 		};
 	};
 
-	/* strictly only needed for T30-W */
 	pci1: pcie@ffe0a000 {
 		reg = <0 0xffe0a000 0 0x1000>;
 		ranges = <0x2000000 0x0 0x80000000 0 0x80000000 0x0 0x20000000
@@ -77,9 +87,44 @@
 				  0x0 0x100000>;
 		};
 	};
+
+	leds {
+		compatible = "gpio-leds";
+
+		attn_orange: attn_orange {
+			gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+			label = "orange:attn";
+		};
+		
+		status_red: status_red {
+			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
+			label = "red:status";
+		};
+		
+		mode_green: mode_green {
+			gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
+			label = "green:mode";
+		};
+		
+		wap_green: wap_green {
+			gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
+			label = "green:wap";
+			default-state = "keep";
+		};
+		
+		wap_orange: wap_orange {
+			gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+			label = "orange:wap";
+			default-state = "keep";
+		};
+		
+		failover_green: failover_green {
+			gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
+			label = "green:failover";
+		};
+	};
 };
 
-// forked off and replaces p1020rdb.dtsi
+// p1020rdb-t30.dtsi replaces p1020rdb.dtsi
 /include/ "p1020rdb-t30.dtsi"
-
 /include/ "p1020si-post.dtsi"
