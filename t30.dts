@@ -13,10 +13,7 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 
-// to be consistent with other fsl boards this file belongs in the dts/fsl subdirectory. 
-// If put in fsl then the image Makefile needs to include the line 'DEVICE_DTS_DIR := $(DTS_DIR)/fsl'
-
-/include/ "p1020si-pre.dtsi"
+/include/ "fsl/p1020si-pre.dtsi"
 / {
 	model = "WatchGuard Firebox T30";
 	compatible = "watchguard,firebox-t30", "fsl,P1020RDB";
@@ -126,5 +123,5 @@
 };
 
 // p1020rdb-t30.dtsi replaces p1020rdb.dtsi
-/include/ "p1020rdb-t30.dtsi"
-/include/ "p1020si-post.dtsi"
+/include/ "fsl/p1020rdb-t30.dtsi"
+/include/ "fsl/p1020si-post.dtsi"
