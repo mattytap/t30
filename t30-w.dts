@@ -1,4 +1,14 @@
 // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * WatchGuard T30 Device Tree Source
+ * Copyright Matt Fawcett (mattytap@gmail.com)
+ *
+ * based off:
+ * 
+ * P1020 RDB Device Tree Source
+ *
+ * Copyright 2009-2011 Freescale Semiconductor Inc.
+ */
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
@@ -6,8 +16,8 @@
 /include/ "fsl/p1020si-pre.dtsi"
 / {
 	model = "watchguard,t30-w";
-	compatible = "watchguard,t30-w";
-	
+	compatible = "watchguard,t30-w", "fsl,P1020RDB";
+
 	aliases {
 		serial0 = &serial0;
 		serial1 = &serial1;
@@ -19,7 +29,7 @@
 		led-running = &attn_orange;
 		led-upgrade = &status_red;
 	};
-		
+
 	memory {
 		device_type = "memory";
 	};
@@ -289,7 +299,7 @@
 			gpio-controller;
 		};
 	};
-	
+
 	leds {
 		compatible = "gpio-leds";
 
